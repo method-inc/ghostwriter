@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Artboard Prototype</title>
+  <link href='css/main.css' media='all' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+  
+  <div id="wrap">
+    <canvas id="artboard" width="750" height="500"></canvas>
+    <div id="toolbox_shader"></div>
+    <div id="toolbox">
+      <ul>
+        <li id="brush_holder"></li>
+        <li id="waterbrush_holder"></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div id="brush" data-bind="css: {down: brush.down}, style: {left: brush.left, top: brush.top, zIndex: brush.zIndex}">
+    <div class="shadow" data-bind="style: {webkitTransform: brush.shadowTransform, MozTransform: brush.shadowTransform, msTransform: brush.shadowTransform, transform: brush.shadowTransform}"></div>
+    <div class="brush" data-bind="style: {webkitTransform: brush.transform, MozTransform: brush.transform, msTransform: brush.transform, transform: brush.transform}"></div>
+  </div>
+  
+  <div id="waterbrush" data-bind="css: {down: waterbrush.down}, style: {left: waterbrush.left, top: waterbrush.top, zIndex: waterbrush.zIndex}">
+    <div class="shadow" data-bind="style: {webkitTransform: waterbrush.shadowTransform, MozTransform: waterbrush.shadowTransform, msTransform: waterbrush.shadowTransform, transform: waterbrush.shadowTransform}"></div>
+    <div class="brush" data-bind="style: {webkitTransform: waterbrush.transform, MozTransform: waterbrush.transform, msTransform: waterbrush.transform, transform: waterbrush.transform}"></div>
+  </div>
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script src="js/lib/knockout-1.1.2.debug.js"></script>
+  
+  <!-- ViewModels -->
+  
+  <script src="js/brush_vm.js"></script>
+  <script src="js/water_vm.js"></script>
+  <script src="js/viewmodel.js"></script>
+  
+  <!-- Views -->
+  
+  <script src="js/brush_view.js"></script>
+  <script src="js/water_view.js"></script>
+  
+  <!-- Main -->
+  
+  <script src="js/toolbox.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/main.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,129 @@
+* {
+  cursor: url(images/chrome_cursor.png), url(images/blank.cur), none;
+}
+
+body {
+  background: #333;
+  overflow: hidden;
+  background: #fff9eb url(images/canvas.jpg) top left;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#wrap {
+  position: absolute;
+  width: 850px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -375px;
+}
+
+#artboard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 750px;
+  height: 500px;
+  background-color: rgba(255,255,255,.2);
+  cursor: url(images/blank_google_chrome.cur), url(images/blank.cur), none;
+}
+
+#toolbox_shader {
+  width: 95px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .1);
+}
+#toolbox {
+  width: 95px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  /* background-color: rgba(0, 0, 0, .1); */
+}
+#toolbox ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#toolbox li {
+  margin: 50px 10px;
+  width: 50px;
+  height: 50px;
+  /*background-color: rgba(0, 0, 0, .5);*/
+}
+#toolbox, #toolbox ul, #toolbox li {
+  z-index: 10000;
+}
+#toolbox li {
+  cursor: pointer !important;
+}
+
+/* Brushes */
+
+/* Kanji Brush */
+
+#brush {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 284px;
+  height: 830px;
+}
+#brush .brush {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent url(images/paintbrush.png) top right no-repeat;
+  width: 284px;
+  height: 830px;
+}
+#brush .shadow {
+  position: absolute;
+  left: 55px;
+  top: 300px;
+  width: 160px;
+  height: 266px;
+  background: transparent url(images/shadow.png) top right no-repeat;
+}
+#brush.down .brush {
+  background-image: url(images/paintbrush_down.png);
+}
+
+/* Watercolor Brush */
+
+#waterbrush {
+  position: absolute;
+  width: 284px;
+  height: 830px;
+  top: 0;
+  left: 0;
+}
+#waterbrush .brush {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent url(images/waterbrush.png) top right no-repeat;
+  width: 284px;
+  height: 830px;
+}
+#waterbrush .shadow {
+  position: absolute;
+  left: 55px;
+  top: 300px;
+  width: 160px;
+  height: 266px;
+  background: transparent url(images/shadow.png) top right no-repeat;
+}
+#waterbrush.down .brush {
+  background-image: url(images/waterbrush_down.png);
+}
+
+

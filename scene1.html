@@ -12,8 +12,8 @@
     <div id="toolbox_shader"></div>
     <div id="toolbox">
       <ul>
-        <li id="brush_holder"></li>
-        <li id="waterbrush_holder"></li>
+        <li id="inkbrush_holder" data-bind="click: function() { ViewModel.inkbrush.active(true); }"></li>
+        <li id="waterbrush_holder" data-bind="click: function() { ViewModel.waterbrush.active(true); }"></li>
       </ul>
     </div>
   </div>

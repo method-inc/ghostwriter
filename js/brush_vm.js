@@ -1,7 +1,11 @@
 (function($, ko) {
+
+  var activeBrush = null;
   
   function Brush(mouse, holder) {
   
+    var self = this;
+    
     this.mouse = mouse;
     this.holder = holder;
     
@@ -11,6 +15,14 @@
     this.shadowHeight = 266;
     
     this.active = ko.observable(false);
+    this.active.subscribe(function(active) {
+      if (active) {
+        if (activeBrush && activeBrush !== self) {
+          activeBrush.active(false);
+        }
+        activeBrush = self;
+      }
+    });
     
     this.pos = ko.dependentObservable(function() {
       if (this.active()) {
@@ -18,7 +30,7 @@
       }
       else {
         var pos = $('#' + holder).offset();
-        return {x: pos.left, y: pos.top};
+        return {x: pos.left + 25, y: pos.top + 25};
       }
     }, this);
     this.wx = ko.observable(this.pos().x);
@@ -60,7 +72,6 @@
     
     // Background update loop
   
-    var self = this;
     (function update() {
       
       // Create natural lean
@@ -74,7 +85,13 @@
       window.setTimeout(update, 1000 / 25);
     })();
   }
-    
+  Brush.prototype = {
+    activate: function() {
+      console.dir(this);      // Knockout is stupid with scoping so this won't work
+      this.active(true);
+    }
+  };
+  
   window.Brush = Brush;
 
 })(jQuery, ko);

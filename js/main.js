@@ -1,7 +1,7 @@
 (function() {
 
   var mouse = new Mouse(),
-      inkbrush = new Brush(mouse, 'brush_holder'),
+      inkbrush = new Brush(mouse, 'inkbrush_holder'),
       waterbrush = new Brush(mouse, 'waterbrush_holder');
       
   // Define global ViewModel
@@ -30,7 +30,7 @@
   
   // Initial state
   
-  ViewModel.inkbrush.active(true);
-  ViewModel.waterbrush.active(false);
+  ViewModel.inkbrush.active(false);
+  ViewModel.waterbrush.active(true);
   
 })();

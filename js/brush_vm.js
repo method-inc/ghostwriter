@@ -1,18 +1,36 @@
 (function($, ko) {
   
-  function Brush(options) {
+  function Brush(mouse, holder) {
   
-    options = options || {};
+    this.mouse = mouse;
+    this.holder = holder;
     
-    this.width = options.width || 284;
-    this.height = options.height || 890;
+    this.width = 284;
+    this.height = 890;
     this.shadowWidth = 160;
     this.shadowHeight = 266;
     
     this.active = ko.observable(false);
-    this.pos = ko.observable({x: 0, y: 0});
+    
+    this.pos = ko.dependentObservable(function() {
+      if (this.active()) {
+        return this.mouse.pos();
+      }
+      else {
+        var pos = $('#' + holder).offset();
+        return {x: pos.left, y: pos.top};
+      }
+    }, this);
     this.wx = ko.observable(this.pos().x);
-    this.down = ko.observable(false);
+    
+    this.down = ko.dependentObservable(function() {
+      if (this.active()) {
+        return this.mouse.down();
+      }
+      else {
+        return false;
+      }
+    }, this);
     
     this.left = ko.dependentObservable(function() {
       return (this.pos().x - this.width * .5 - 4) + 'px';
@@ -39,8 +57,24 @@
     this.shadowTransform = ko.dependentObservable(function() {
       return 'rotate(' + (-this.lean() - 300) + 'deg)';
     }, this);
-  }
+    
+    // Background update loop
   
+    var self = this;
+    (function update() {
+      
+      // Create natural lean
+      
+      var wx = self.wx(),
+          x = self.pos().x;
+      if (Math.abs(x - wx) > 2) {
+        self.wx(wx + (x - wx) * .25);
+      }
+      
+      window.setTimeout(update, 1000 / 25);
+    })();
+  }
+    
   window.Brush = Brush;
 
 })(jQuery, ko);

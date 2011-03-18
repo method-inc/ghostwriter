@@ -18,9 +18,9 @@
     </div>
   </div>
   
-  <div id="brush" data-bind="css: {down: brush.down}, style: {left: brush.left, top: brush.top, zIndex: brush.zIndex}">
-    <div class="shadow" data-bind="style: {webkitTransform: brush.shadowTransform, MozTransform: brush.shadowTransform, msTransform: brush.shadowTransform, transform: brush.shadowTransform}"></div>
-    <div class="brush" data-bind="style: {webkitTransform: brush.transform, MozTransform: brush.transform, msTransform: brush.transform, transform: brush.transform}"></div>
+  <div id="brush" data-bind="css: {down: inkbrush.down}, style: {left: inkbrush.left, top: inkbrush.top, zIndex: inkbrush.zIndex}">
+    <div class="shadow" data-bind="style: {webkitTransform: inkbrush.shadowTransform, MozTransform: inkbrush.shadowTransform, msTransform: inkbrush.shadowTransform, transform: inkbrush.shadowTransform}"></div>
+    <div class="brush" data-bind="style: {webkitTransform: inkbrush.transform, MozTransform: inkbrush.transform, msTransform: inkbrush.transform, transform: inkbrush.transform}"></div>
   </div>
   
   <div id="waterbrush" data-bind="css: {down: waterbrush.down}, style: {left: waterbrush.left, top: waterbrush.top, zIndex: waterbrush.zIndex}">
@@ -34,19 +34,15 @@
   
   <!-- ViewModels -->
   
+  <script src="js/mouse_vm.js"></script>
   <script src="js/brush_vm.js"></script>
-  <script src="js/water_vm.js"></script>
-  <script src="js/viewmodel.js"></script>
   
   <!-- Views -->
   
   <script src="js/brush_view.js"></script>
-  <script src="js/water_view.js"></script>
   
   <!-- Main -->
   
-  <script src="js/toolbox.js"></script>
-  <script src="js/gallery.js"></script>
   <script src="js/main.js"></script>
   
 </body>

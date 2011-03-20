@@ -1,36 +1,46 @@
 (function() {
 
-  var mouse = new Mouse(),
-      inkbrush = new Brush(mouse, 'inkbrush_holder'),
-      waterbrush = new Brush(mouse, 'waterbrush_holder');
-      
+  // Create VM instances
+  
+  var mouse         = new Mouse(),
+      activebrush   = ko.observable(null),
+      inkbrush      = new Brush(mouse, 'inkbrush_holder', activebrush, 'wrap', 'waterRenderer'),
+      waterbrush    = new Brush(mouse, 'waterbrush_holder', activebrush, 'wrap', 'waterRenderer'),
+      canvas        = new Canvas('artboard'),
+      waterRenderer = new WaterRenderer(canvas);
+    
+  // Init ViewModels
+  
+  activebrush(inkbrush);
+  mouse.monitor();
+  
+  activebrush.subscribe(function (brush) {
+    if (brush === null) {
+      $('body').removeClass("brushy");
+    }
+    else {
+      $('body').addClass("brushy");
+    }
+  });
+  
   // Define global ViewModel
   
   window.ViewModel = {
     inkbrush: inkbrush,
     waterbrush: waterbrush,
-    mouse: mouse
+    mouse: mouse,
+    activebrush: activebrush,
+    canvas: canvas
   };
-  
-  // Init ViewModels
-  
-  mouse.monitor();
   
   // Bind Views to ViewModel
   
   ko.applyBindings(ViewModel);
-  
-  //$('#brush').BrushView();
-  //$('#waterbrush').BrushView();
 
   // Disable text selection
   
   document.onselectstart = function() {return false;} // ie
   document.onmousedown = function() {return false;} // mozilla
   
-  // Initial state
-  
-  ViewModel.inkbrush.active(false);
-  ViewModel.waterbrush.active(true);
   
 })();

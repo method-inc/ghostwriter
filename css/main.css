@@ -32,6 +32,14 @@ body.brushy {
   /*opacity: 0.95;*/
 }
 
+#debugboard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 750px;
+  height: 500px;
+}
+
 .brushy #artboard {
   cursor: url(images/blank_google_chrome.cur), url(images/blank.cur), none;
 }

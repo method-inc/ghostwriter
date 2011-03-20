@@ -4,29 +4,41 @@
   
   var lastTip = null;
   
-  function Drip(ctx, x, y) {
+  function Drip(ctx, position, radius, direction) {
     var self = this;
     
     this.ctx = ctx;
-    this.x = x;
-    this.y = y;
-    this.r = 10;
+    this.pos = position;
+    this.dir = direction
+    this.r = radius;
     this.opacity = 0.03;
     
-    (function update() {
-      self.y += 2;
-      self.r += 5;
-      self.opacity -= 0.001;
-      if (self.opacity > 0.001) {
-        self.ctx.save();
-        self.ctx.translate(self.x, self.y);
-        self.ctx.fillStyle = 'rgba(0, 0, 0, ' + self.opacity + ')';
-        self.ctx.fillRect(self.r * -.5, self.r * -.5, self.r, self.r);
-        self.ctx.restore();
-        window.setTimeout(update, 1000 / 25);
-      }
-    })();
+    this.debug = $('#debugboard')[0].getContext('2d');
+    
+    Drip.all.push(this);
   }
+  Drip.all = [];
+  Drip.prototype = {
+    update: function() {
+      this.pos.y += 2;
+      this.r += 5;
+      this.opacity -= 0.001;
+      if (this.opacity > 0.001) {
+        this.ctx.save();
+        this.ctx.translate(this.pos.x, this.pos.y);
+        this.ctx.fillStyle = 'rgba(0, 0, 0, ' + this.opacity + ')';
+        this.ctx.fillRect(this.r * -.5, this.r * -.5, this.r, this.r);
+        this.ctx.restore();
+        this.debug.fillStyle = '#0ff';
+        this.debug.fillRect(this.pos.x - 2, this.pos.y - 2, 4, 4);
+        return 1;
+      }
+      else {
+        Drip.all.splice(Drip.all.indexOf(this), 1);
+        return 0;
+      }
+    }
+  };
   
   function WaterRenderer(canvas, options) {
     options = options || {};
@@ -40,61 +52,59 @@
     this.minHeight = options.minHeight || 30;
     this.maxHeight = options.maxHeight || 120;
     this.scale = options.scale || 1.5;
+    this.dripping = false;
+    this.newDrips = false;
+    
+    this.debug = $('#debugboard')[0].getContext('2d');
     
     $(document).bind(ns + '.down', function(event, position) {
       self.ctx.fillStyle = '#0f0';
       self.ctx.fillRect(position.x, position.y, 10, 10);
       self.lastPoint = {x: position.x, y: position.y};
+      self.newDrips = true;
+      self.startDrip();
     });
     
     $(document).bind(ns + '.move', function(event, position) {
-      //self.ctx.fillStyle = '#000';
-      //self.ctx.fillRect(position.x, position.y, 3, 3);
-      //self.triangle(self.lastPoint, position);
-      new Drip(self.ctx, position.x, position.y);
       self.lastPoint = {x: position.x, y: position.y};
     });
     
     $(document).bind(ns + '.up', function(event, position) {
       self.ctx.fillStyle = '#f00';
       self.ctx.fillRect(position.x, position.y, 10, 10);
-      /*
-      if (self.lastPoint) {
-        self.triangle(self.lastPoint, position);
-      }*/
-      self.endStroke();
+      self.newDrips = false;
     });
     
   }
   WaterRenderer.prototype = {
-    endStroke: function() {
-      this.lastPoint = null;
-      this.lastTip = null;
-    },
-    triangle: function(a, b) {
-      var dx = b.x - a.x,
-          dy = b.y - a.y,
-          mx = (a.x + b.x) * .5,
-          my = (a.y + b.y) * .5,
-          dist = Math.sqrt(dx * dx + dy * dy),
-          x = mx,
-          y = my + Math.max(this.maxHeight - dist * this.scale, this.minHeight),
-          ctx = this.ctx;
-      /*
-      ctx.beginPath();
-      ctx.moveTo(a.x, a.y);
-      ctx.lineTo(x, y);
-      ctx.lineTo(b.x, b.y);
-      ctx.closePath();
-      ctx.stroke();
-      */
-      if (this.lastTip) {
-        ctx.beginPath();
-        ctx.moveTo(this.lastTip.x, this.lastTip.y);
-        ctx.lineTo(x, y);
-        ctx.stroke();
+    startDrip: function() {
+      if (this.dripping) {
+        return;
       }
-      this.lastTip = {x: x, y: y};
+      var self = this;
+      this.dripping = true;
+      (function update() {
+        if (self.newDrips) {
+          new Drip(self.ctx, self.lastPoint, 10, {x: 0, y: 0});
+        }
+        self.debug.clearRect(0, 0, 750, 500);
+        var i = 0;
+        while (i < Drip.all.length) {
+          i += Drip.all[i].update();
+        }
+        if (Drip.all.length === 0) {
+          self.dripping = false;
+        }
+        if (self.dripping) {
+          window.setTimeout(update, 1000 / 25);
+        }
+      })();
+    },
+    stopDrip: function() {
+      this.dripping = false;
+    },
+    endStroke: function() {
+      this.lastTip = null;
     }
   }
   

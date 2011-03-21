@@ -81,6 +81,36 @@ body.brushy {
 
 /* Brushes */
 
+/* Pen */
+
+#pen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 284px;
+  height: 830px;
+}
+#pen .brush {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent url(images/pen.png) top right no-repeat;
+  width: 284px;
+  height: 830px;
+}
+#pen .shadow {
+  position: absolute;
+  left: 55px;
+  top: 300px;
+  width: 160px;
+  height: 266px;
+  background: transparent url(images/shadow.png) top right no-repeat;
+}
+#pen.down .brush {
+  background-image: url(images/pen_down.png);
+}
+
+
 /* Kanji Brush */
 
 #brush {

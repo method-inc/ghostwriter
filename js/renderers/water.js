@@ -10,11 +10,11 @@
       scatter: 10,
       fps: 25,
       momentum: 0.05,
-      radius: 10,
-      spread: 5,
+      radius: 20,
+      spread: 2,
       gravity: 3,
       opacity: 0.02,
-      fade: 0.001,
+      fade: 0.004,
       color: [0,0,0]
     };
     

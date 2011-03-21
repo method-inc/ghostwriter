@@ -4,14 +4,19 @@
   
   var mouse         = new Mouse(),
       activebrush   = ko.observable(null),
-      inkbrush      = new Brush(mouse, 'inkbrush_holder', activebrush, 'wrap', 'waterRenderer'),
+      pen           = new Brush(mouse, 'pen_holder', activebrush, 'wrap', 'inkRenderer')
+      inkbrush      = new Brush(mouse, 'inkbrush_holder', activebrush, 'wrap', 'inkRenderer'),
       waterbrush    = new Brush(mouse, 'waterbrush_holder', activebrush, 'wrap', 'waterRenderer'),
-      canvas        = new Canvas('artboard'),
-      waterRenderer = new WaterRenderer(canvas);
+      canvas        = new Canvas('artboard');
+  
+  // Create Renderers
+  
+  var waterRenderer = new WaterRenderer(canvas),
+      inkRenderer   = new InkRenderer(canvas);
     
   // Init ViewModels
   
-  activebrush(inkbrush);
+  activebrush(pen);
   mouse.monitor();
   
   activebrush.subscribe(function (brush) {
@@ -26,6 +31,7 @@
   // Define global ViewModel
   
   window.ViewModel = {
+    pen: pen,
     inkbrush: inkbrush,
     waterbrush: waterbrush,
     mouse: mouse,

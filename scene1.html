@@ -8,30 +8,32 @@
 <body>
   
   <div id="wrap">
-    <canvas id="artboard" width="750" height="500"></canvas>
+    <div id="drawing">
+      <canvas id="artboard" width="750" height="500"></canvas>
+      <div id="pen" data-bind="css: {down: pen.down}, style: {left: pen.left, top: pen.top, zIndex: pen.zIndex}">
+        <div class="shadow" data-bind="style: {webkitTransform: pen.shadowTransform, MozTransform: pen.shadowTransform, msTransform: pen.shadowTransform, transform: pen.shadowTransform}"></div>
+        <div class="brush" data-bind="style: {webkitTransform: pen.transform, MozTransform: pen.transform, msTransform: pen.transform, transform: pen.transform}"></div>
+      </div>
+      
+      <div id="brush" data-bind="css: {down: inkbrush.down}, style: {left: inkbrush.left, top: inkbrush.top, zIndex: inkbrush.zIndex}">
+        <div class="shadow" data-bind="style: {webkitTransform: inkbrush.shadowTransform, MozTransform: inkbrush.shadowTransform, msTransform: inkbrush.shadowTransform, transform: inkbrush.shadowTransform}"></div>
+        <div class="brush" data-bind="style: {webkitTransform: inkbrush.transform, MozTransform: inkbrush.transform, msTransform: inkbrush.transform, transform: inkbrush.transform}"></div>
+      </div>
+      
+      <div id="waterbrush" data-bind="css: {down: waterbrush.down}, style: {left: waterbrush.left, top: waterbrush.top, zIndex: waterbrush.zIndex}">
+        <div class="shadow" data-bind="style: {webkitTransform: waterbrush.shadowTransform, MozTransform: waterbrush.shadowTransform, msTransform: waterbrush.shadowTransform, transform: waterbrush.shadowTransform}"></div>
+        <div class="brush" data-bind="style: {webkitTransform: waterbrush.transform, MozTransform: waterbrush.transform, msTransform: waterbrush.transform, transform: waterbrush.transform}"></div>
+      </div>
+    </div>
+    
     <canvas id="debugboard" width="750" height="500"></canvas>
-    <div id="toolbox_shader"></div>
+    
     <div id="toolbox">
       <ul>
         <li id="pen_holder" data-bind="click: function() { ViewModel.activebrush(ViewModel.pen); }"></li>
         <li id="inkbrush_holder" data-bind="click: function() { ViewModel.activebrush(ViewModel.inkbrush); }"></li>
         <li id="waterbrush_holder" data-bind="click: function() { ViewModel.activebrush(ViewModel.waterbrush); }"></li>
       </ul>
-    </div>
-    
-    <div id="pen" data-bind="css: {down: pen.down}, style: {left: pen.left, top: pen.top, zIndex: pen.zIndex}">
-      <div class="shadow" data-bind="style: {webkitTransform: pen.shadowTransform, MozTransform: pen.shadowTransform, msTransform: pen.shadowTransform, transform: pen.shadowTransform}"></div>
-      <div class="brush" data-bind="style: {webkitTransform: pen.transform, MozTransform: pen.transform, msTransform: pen.transform, transform: pen.transform}"></div>
-    </div>
-    
-    <div id="brush" data-bind="css: {down: inkbrush.down}, style: {left: inkbrush.left, top: inkbrush.top, zIndex: inkbrush.zIndex}">
-      <div class="shadow" data-bind="style: {webkitTransform: inkbrush.shadowTransform, MozTransform: inkbrush.shadowTransform, msTransform: inkbrush.shadowTransform, transform: inkbrush.shadowTransform}"></div>
-      <div class="brush" data-bind="style: {webkitTransform: inkbrush.transform, MozTransform: inkbrush.transform, msTransform: inkbrush.transform, transform: inkbrush.transform}"></div>
-    </div>
-    
-    <div id="waterbrush" data-bind="css: {down: waterbrush.down}, style: {left: waterbrush.left, top: waterbrush.top, zIndex: waterbrush.zIndex}">
-      <div class="shadow" data-bind="style: {webkitTransform: waterbrush.shadowTransform, MozTransform: waterbrush.shadowTransform, msTransform: waterbrush.shadowTransform, transform: waterbrush.shadowTransform}"></div>
-      <div class="brush" data-bind="style: {webkitTransform: waterbrush.transform, MozTransform: waterbrush.transform, msTransform: waterbrush.transform, transform: waterbrush.transform}"></div>
     </div>
   </div>
   

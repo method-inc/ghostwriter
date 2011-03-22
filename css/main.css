@@ -1,7 +1,12 @@
+
+* {
+  cursor: url(images/blank_google_chrome.cur), url(images/blank.cur), none !important;
+}
+
 body {
   background: #333;
   overflow: hidden;
-  background: #fff9eb url(images/canvas.jpg) top left;
+  background: url(images/wood2_glow.jpg) top left no-repeat, url(images/wood2.jpg) top left;
   width: 100%;
   height: 100%;
   padding: 0;
@@ -9,7 +14,7 @@ body {
 }
 
 body.brushy {
-  cursor: url(images/chrome_cursor.png), url(images/blank.cur), none;
+  cursor: url(images/chrome_cursor.png), url(images/blank.cur), none !important;
 }
 
 #wrap {
@@ -19,7 +24,15 @@ body.brushy {
   top: 50%;
   left: 50%;
   margin-top: -250px;
-  margin-left: -375px;
+  margin-left: -425px;
+}
+
+#drawing {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 750px;
+  height: 500px;
 }
 
 #artboard {
@@ -28,7 +41,8 @@ body.brushy {
   left: 0;
   width: 750px;
   height: 500px;
-  background-color: rgba(255,255,255,.2);
+  background: #eee url(images/canvas2.jpg);
+  box-shadow: 1px 1px 5px #000;
   /*opacity: 0.95;*/
 }
 
@@ -44,19 +58,11 @@ body.brushy {
   cursor: url(images/blank_google_chrome.cur), url(images/blank.cur), none;
 }
 
-#toolbox_shader {
-  width: 95px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, .1);
-}
 #toolbox {
   width: 95px;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   bottom: 0;
   /* background-color: rgba(0, 0, 0, .1); */
 }
@@ -69,8 +75,12 @@ body.brushy {
   margin: 50px 10px;
   width: 50px;
   height: 50px;
-  /*background-color: rgba(0, 0, 0, .2);*/
-  border: solid 3px rgba(0, 0, 0, .1);
+  background-color: rgba(255, 255, 255, .07);
+  /*
+  border-right: solid 2px rgba(255, 255, 255, .2);
+  border-bottom: solid 1px rgba(255, 255, 255, .3);
+  */
+  -webkit-border-radius: 5px;
 }
 #toolbox, #toolbox ul, #toolbox li {
   z-index: 10000;

@@ -2,13 +2,12 @@
 
   var ns = 'inkRenderer';
   
-  function InkRenderer(canvas, options) {
+  function InkRenderer(canvas, palette, options) {
     var self = this;
     
     this.settings = {
       blot: 3,
-      stroke: 6,
-      color: [0,0,0]
+      stroke: 6
     };
     
     $.extend(this.settings, options || {})
@@ -16,6 +15,7 @@
     this.ctx = canvas.ctx;
     this.position = [null, null];                                 // [from, to]
     this.width = 2;
+    this.palette = palette;
     
     this.debug = $('#debugboard')[0].getContext('2d');
     
@@ -54,7 +54,7 @@
       this.width += ((this.settings.stroke * (1 - (dist / 15))) - this.width) * .25;
       this.width = Math.min(15, Math.max(1, this.width));
       this.ctx.save();
-        this.ctx.strokeStyle = '#000';
+        this.ctx.strokeStyle = 'rgba(' + this.palette.active().join(',') + ', 1)';
         this.ctx.lineWidth = this.width;
         this.ctx.beginPath();
         this.ctx.moveTo(this.position[0].x, this.position[0].y);

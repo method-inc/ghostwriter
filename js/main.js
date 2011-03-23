@@ -16,8 +16,8 @@
   
   // Create Renderers
   
-  var waterRenderer = new WaterRenderer(canvas),
-      inkRenderer   = new InkRenderer(canvas);
+  var waterRenderer = new WaterRenderer(canvas, palette),
+      inkRenderer   = new InkRenderer(canvas, palette);
     
   // Init ViewModels
   
@@ -63,7 +63,6 @@
   $('#sidebar').mouseleave(
     function(event) {
       ViewModel.activebrush().tracking(true);
-      console.dir(event);
       return false;
     }
   );

@@ -11,6 +11,7 @@
       pen           = new Brush(mouse, 'pen_holder', activebrush, 'drawing', 'inkRenderer', drawing)
       inkbrush      = new Brush(mouse, 'inkbrush_holder', activebrush, 'drawing', 'inkRenderer', drawing),
       waterbrush    = new Brush(mouse, 'waterbrush_holder', activebrush, 'drawing', 'waterRenderer', drawing),
+      palette       = new Palette(),
       canvas        = new Canvas('artboard');
   
   // Create Renderers
@@ -40,6 +41,7 @@
     waterbrush: waterbrush,
     mouse: mouse,
     activebrush: activebrush,
+    palette: palette,
     canvas: canvas
   };
   
@@ -49,10 +51,20 @@
   
   // Non-standard bindings
   
-  $('#palette').bind('mouseover',
+  $('#wrap').bind('click', function(event) {
+    //console.dir(event);
+  });
+  
+  $('#sidebar').mouseenter(
     function(event) {
-      ViewModel.activebrush.visible(false);
-      alert('ok');
+      ViewModel.activebrush().tracking(false);
+      return false;
+    });
+  $('#sidebar').mouseleave(
+    function(event) {
+      ViewModel.activebrush().tracking(true);
+      console.dir(event);
+      return false;
     }
   );
 

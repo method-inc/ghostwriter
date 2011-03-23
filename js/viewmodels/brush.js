@@ -15,29 +15,39 @@
     this.shadowWidth = 160;
     this.shadowHeight = 266;
     
+    this.lastPos = {x: 0, y: 0};
+    
     this.visible = ko.observable(true);
+    this.tracking = ko.observable(true);
     
     this.active = ko.dependentObservable(function() {
       return (activebrush() === this);
     }, this);
     
+    this.available = ko.dependentObservable(function() {
+      return !this.active();
+    }, this);
+    
     this.pos = ko.dependentObservable(function() {
       if (this.active()) {
-        var container = $('#' + this.container).offset(),
-            mouse = this.mouse.pos();
-        return {x: (mouse.x - container.left), y: (mouse.y - container.top)};
+        if (this.tracking()) {
+          var container = $('#' + this.container).offset(),
+              mouse = this.mouse.pos();
+          this.lastPos = {x: (mouse.x - container.left), y: (mouse.y - container.top)};
+        }
       }
       else {
         var holder = $('#' + this.holder).offset(),
             container = $('#' + this.container).offset();
-        return {x: holder.left - container.left + 25, y: holder.top - container.top + 25};
+        this.lastPos = {x: holder.left - container.left + 25, y: holder.top - container.top + 25};
       }
+      return this.lastPos;
     }, this);
     
     this.wx = ko.observable(this.pos().x);
     
     this.down = ko.dependentObservable(function() {
-      if (this.active()) {
+      if (this.active() && this.tracking()) {
         return this.mouse.down();
       }
       else {
@@ -46,10 +56,10 @@
     }, this);
     
     this.left = ko.dependentObservable(function() {
-      return (this.pos().x - this.width * .5 - 4) + 'px';
+      return (this.pos().x - this.width * .5 - 5) + 'px';
     }, this);
     this.top = ko.dependentObservable(function() {
-      return (this.pos().y - this.height * .5 + 6) + 'px';
+      return (this.pos().y - this.height * .5 + 1) + 'px';
     }, this);
     this.zIndex = ko.dependentObservable(function() {
       return ~~this.pos().y;

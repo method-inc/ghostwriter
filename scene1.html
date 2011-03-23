@@ -28,20 +28,24 @@
     
     <canvas id="debugboard" width="750" height="500"></canvas>
     
-    <div id="toolbox">
-      <ul>
-        <li id="pen_holder" data-bind="click: function() { ViewModel.activebrush(ViewModel.pen); }"></li>
-        <li id="inkbrush_holder" data-bind="click: function() { ViewModel.activebrush(ViewModel.inkbrush); }"></li>
-        <li id="waterbrush_holder" data-bind="click: function() { ViewModel.activebrush(ViewModel.waterbrush); }"></li>
-      </ul>
-    </div>
-    
-    <div id="palette">
-      <ul class="colors">
-        <li id="red"></li>
-        <li id="green"></li>
-        <li id="blue"></li>
-      </ul>
+    <div id="sidebar">
+      <div id="toolbox">
+        <ul>
+          <li id="inkbrush_holder" data-bind="css: {invisible: ViewModel.inkbrush.active}, click: function() { ViewModel.activebrush(ViewModel.inkbrush); }"></li>
+          <li id="waterbrush_holder" data-bind="css: {invisible: ViewModel.waterbrush.active}, click: function() { ViewModel.activebrush(ViewModel.waterbrush); }"></li>
+          <li id="pen_holder" data-bind="css: {invisible: ViewModel.pen.active}, click: function() { ViewModel.activebrush(ViewModel.pen); }"></li>
+        </ul>
+      </div>
+      
+      <div id="palette">
+        <ul class="colors">
+          <li id="red" data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.red); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.red }"></li>
+          <li id="green" data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.green); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.green }"></li>
+          <li id="blue" data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.blue); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.blue }"></li>
+          <li id="black" data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.black); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.black }"></li>
+          <li id="white" data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.white); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.white }"></li>
+        </ul>
+      </div>
     </div>
   </div>
   
@@ -54,6 +58,7 @@
   <script src="js/viewmodels/mouse.js"></script>
   <script src="js/viewmodels/brush.js"></script>
   <script src="js/viewmodels/canvas.js"></script>
+  <script src="js/viewmodels/palette.js"></script>
   
   <!-- Brush Renderers -->
   

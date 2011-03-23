@@ -11,7 +11,7 @@
       pen           = new Brush(mouse, 'pen_holder', activebrush, 'drawing', 'inkRenderer', drawing)
       inkbrush      = new Brush(mouse, 'inkbrush_holder', activebrush, 'drawing', 'inkRenderer', drawing),
       waterbrush    = new Brush(mouse, 'waterbrush_holder', activebrush, 'drawing', 'waterRenderer', drawing),
-      palette       = new Palette(),
+      palette       = new Palette(drawing),
       canvas        = new Canvas('artboard');
   
   // Create Renderers

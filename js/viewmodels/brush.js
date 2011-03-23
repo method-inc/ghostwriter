@@ -1,6 +1,6 @@
 (function($, ko) {
   
-  function Brush(mouse, holder, activebrush, container, renderer, broadcaster) {
+  function Brush(mouse, holder, activebrush, container, renderer, drawing) {
   
     var self = this;
     
@@ -8,7 +8,7 @@
     this.holder = holder;
     this.container = container;
     this.renderer = renderer;
-    this.broadcaster = broadcaster;
+    this.drawing = drawing;
     
     this.width = 284;
     this.height = 890;
@@ -80,7 +80,7 @@
       return 'rotate(' + (-this.lean() - 300) + 'deg)';
     }, this);
     
-    // Custom event broadcasters
+    // Custom event drawings
     
     // TODO: Bug in Knockout doesn't actually pass the value of "down" if you use the:
     // subscribe(function... , this) method. Fix!
@@ -89,16 +89,16 @@
     
     this.down.subscribe(function(down) {
       if (down) {
-        broadcaster.event(self.renderer + '.down', [self.pos()]);
+        drawing.event(self.renderer + '.down', [self.pos()]);
       }
       else {
-        broadcaster.event(self.renderer + '.up', [self.pos()]);
+        drawing.event(self.renderer + '.up', [self.pos()]);
       }
     });
     
     this.pos.subscribe(function(pos) {
       if (self.down()) {
-        broadcaster.event(self.renderer + '.move', pos);
+        drawing.event(self.renderer + '.move', pos);
       }
     });
     

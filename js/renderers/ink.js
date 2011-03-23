@@ -13,7 +13,7 @@
     $.extend(this.settings, options || {})
     
     this.ctx = canvas.ctx;
-    this.position = [null, null];                                 // [from, to]
+    this.position = [null, null];   // [from, to]
     this.width = 2;
     this.color = [0,0,0];
     
@@ -21,7 +21,6 @@
     
     $(document).bind(ns + '.down', function(event, position) {
       self.position = [{x: position.x, y: position.y}, {x: position.x, y: position.y}];
-      //self.blot(self.settings.blot);
     });
     
     $(document).bind(ns + '.move', function(event, position) {

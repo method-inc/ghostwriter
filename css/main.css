@@ -12,6 +12,16 @@ body.brushy {
   cursor: url(images/chrome_cursor.png), url(images/blank.cur), none !important;
 }
 
+a {
+  color: #ffa;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .invisible {
   visibility: hidden;
 }
@@ -32,6 +42,8 @@ body.brushy {
   right: 0;
   width: 750px;
   height: 500px;
+  background: #eee url(images/canvas2.jpg);
+  box-shadow: 1px 1px 5px #000;
 }
 
 #artboard {
@@ -40,9 +52,8 @@ body.brushy {
   left: 0;
   width: 750px;
   height: 500px;
-  background: #eee url(images/canvas2.jpg);
-  box-shadow: 1px 1px 5px #000;
-  /*opacity: 0.95;*/
+  opacity: 0.75;
+  /*border: solid 4px #ffc;*/
 }
 
 #debugboard {
@@ -67,6 +78,19 @@ body.brushy {
   height: 500px;
   z-index: 10000;
   cursor: default !important;
+}
+
+/* Buttons */
+
+#controls {
+  position: absolute;
+  bottom: 150px;
+  right: 0;
+  border: solid 1px red;
+}
+
+#controls li {
+  margin: 20px;
 }
 
 /* Drawing tools */

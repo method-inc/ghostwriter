@@ -12,7 +12,8 @@
       inkbrush      = new Brush(mouse, 'inkbrush_holder', activebrush, 'drawing', 'inkRenderer', drawing),
       waterbrush    = new Brush(mouse, 'waterbrush_holder', activebrush, 'drawing', 'waterRenderer', drawing),
       palette       = new Palette(drawing),
-      canvas        = new Canvas('artboard');
+      canvas        = new Canvas('artboard'),
+      controls      = new Controls(drawing);
   
   // Create Renderers
   
@@ -42,7 +43,8 @@
     mouse: mouse,
     activebrush: activebrush,
     palette: palette,
-    canvas: canvas
+    canvas: canvas,
+    controls: controls
   };
   
   // Bind Views to ViewModel

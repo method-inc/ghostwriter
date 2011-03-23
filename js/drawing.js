@@ -1,5 +1,13 @@
 (function($, ko) {
 
+  function trigger(events, index) {
+    var event = events[index];
+    $(document).trigger(event.name, event.args);
+    if (++index < events.length) {
+      window.setTimeout(trigger, 1000 / 45, events, index);
+    }
+  }
+
   function Drawing() {
     this.events = [];
   }
@@ -11,10 +19,13 @@
       $(document).trigger(name, args);
     },
     
+    clear: function() {
+      $(document).trigger('canvas.clear');
+    },
+    
     play: function() {
-      for (var i = 0; i < this.events.length; i++) {
-        $(document).trigger(this.events[i].name, this.events[i].args);
-      }
+      this.clear();
+      trigger(this.events, 0);
     }
     
   };

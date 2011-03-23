@@ -46,11 +46,18 @@
           <li id="white" data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.white); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.white }"></li>
         </ul>
       </div>
+      
+      <div id="controls">
+        <ul>
+          <li><a data-bind="click: ViewModel.controls.clear" href='#'>Clear</a></li>
+          <li><a data-bind='click: ViewModel.controls.playback' href='#'>Playback</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   
   
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script src="js/lib/jquery-1.4.2.min.js"></script>
   <script src="js/lib/knockout-1.1.2.debug.js"></script>
   
   <!-- ViewModels -->
@@ -59,6 +66,7 @@
   <script src="js/viewmodels/brush.js"></script>
   <script src="js/viewmodels/canvas.js"></script>
   <script src="js/viewmodels/palette.js"></script>
+  <script src="js/viewmodels/controls.js"></script>
   
   <!-- Brush Renderers -->
   

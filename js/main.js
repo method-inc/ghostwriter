@@ -1,12 +1,16 @@
 (function() {
 
+  // Create Drawing instance
+  
+  var drawing = new Drawing();
+  
   // Create VM instances
   
   var mouse         = new Mouse(),
       activebrush   = ko.observable(null),
-      pen           = new Brush(mouse, 'pen_holder', activebrush, 'drawing', 'inkRenderer')
-      inkbrush      = new Brush(mouse, 'inkbrush_holder', activebrush, 'drawing', 'inkRenderer'),
-      waterbrush    = new Brush(mouse, 'waterbrush_holder', activebrush, 'drawing', 'waterRenderer'),
+      pen           = new Brush(mouse, 'pen_holder', activebrush, 'drawing', 'inkRenderer', drawing)
+      inkbrush      = new Brush(mouse, 'inkbrush_holder', activebrush, 'drawing', 'inkRenderer', drawing),
+      waterbrush    = new Brush(mouse, 'waterbrush_holder', activebrush, 'drawing', 'waterRenderer', drawing),
       canvas        = new Canvas('artboard');
   
   // Create Renderers
@@ -42,6 +46,15 @@
   // Bind Views to ViewModel
   
   ko.applyBindings(ViewModel);
+  
+  // Non-standard bindings
+  
+  $('#palette').bind('mouseover',
+    function(event) {
+      ViewModel.activebrush.visible(false);
+      alert('ok');
+    }
+  );
 
   // Disable text selection
   

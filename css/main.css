@@ -89,6 +89,36 @@ body.brushy {
   cursor: pointer !important;
 }
 
+/* Palette */
+
+#palette {
+  position: absolute;
+  left: -30px;
+  bottom: -40px;
+}
+
+#palette ul {
+  list-style: none;
+}
+
+.colors li {
+  width: 64px;
+  height: 63px;
+  cursor: pointer !important;
+}
+
+#red {
+  background: transparent url(images/red.png) center no-repeat;
+}
+
+#green {
+  background: transparent url(images/green.png) center no-repeat;
+}
+
+#blue {
+  background: transparent url(images/blue.png) center no-repeat;
+}
+
 /* Brushes */
 
 /* Pen */

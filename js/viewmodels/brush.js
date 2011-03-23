@@ -1,6 +1,6 @@
 (function($, ko) {
   
-  function Brush(mouse, holder, activebrush, container, renderer) {
+  function Brush(mouse, holder, activebrush, container, renderer, broadcaster) {
   
     var self = this;
     
@@ -8,11 +8,14 @@
     this.holder = holder;
     this.container = container;
     this.renderer = renderer;
+    this.broadcaster = broadcaster;
     
     this.width = 284;
     this.height = 890;
     this.shadowWidth = 160;
     this.shadowHeight = 266;
+    
+    this.visible = ko.observable(true);
     
     this.active = ko.dependentObservable(function() {
       return (activebrush() === this);
@@ -76,15 +79,16 @@
     
     this.down.subscribe(function(down) {
       if (down) {
-        $(document).trigger(self.renderer + '.down', [self.pos()]);
+        broadcaster.event(self.renderer + '.down', [self.pos()]);
       }
       else {
-        $(document).trigger(self.renderer + '.up', [self.pos()]);
+        broadcaster.event(self.renderer + '.up', [self.pos()]);
       }
     });
+    
     this.pos.subscribe(function(pos) {
       if (self.down()) {
-        $(document).trigger(self.renderer + '.move', pos);
+        broadcaster.event(self.renderer + '.move', pos);
       }
     });
     

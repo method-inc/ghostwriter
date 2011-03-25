@@ -46,22 +46,13 @@ ul {
   box-shadow: 1px 1px 5px #000;
 }
 
-#artboard {
+#artboard, #workboard {
   position: absolute;
   top: 0;
   left: 0;
   width: 750px;
   height: 500px;
-  opacity: 0.75;
-  /*border: solid 4px #ffc;*/
-}
-
-#debugboard {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 750px;
-  height: 500px;
+  opacity: 0.85;
 }
 
 .brushy #artboard {
@@ -84,7 +75,7 @@ ul {
 
 #controls {
   position: absolute;
-  bottom: 150px;
+  bottom: 80px;
   right: 0;
   border: solid 1px red;
 }

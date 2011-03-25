@@ -17,7 +17,7 @@
     this.width = 2;
     this.color = [0,0,0];
     
-    this.debug = $('#debugboard')[0].getContext('2d');
+    this.debug = $('#workboard')[0].getContext('2d');
     
     $(document).bind(ns + '.down', function(event, position) {
       self.position = [{x: position.x, y: position.y}, {x: position.x, y: position.y}];

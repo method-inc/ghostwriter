@@ -24,7 +24,7 @@
     this.position = [null, null];                                 // [from, to]
     this.dripping = false;
     
-    this.debug = $('#debugboard')[0].getContext('2d');
+    this.debug = $('#workboard')[0].getContext('2d');
     
     $(document).bind(ns + '.down', function(event, position) {
       self.position = [{x: position.x, y: position.y}, {x: position.x, y: position.y}];

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Artboard Prototype</title>
+  <title>Ghostwriter, by Skookum.com</title>
   <link href='css/main.css' media='all' rel='stylesheet' type='text/css' />
 </head>
 
@@ -10,6 +10,7 @@
   <div id="wrap">
     <div id="drawing">
       <canvas id="artboard" width="750" height="500"></canvas>
+      <canvas id="workboard" width="750" height="500"></canvas>
       <div id="pen" data-bind="visible: pen.visible, css: {down: pen.down}, style: {left: pen.left, top: pen.top, zIndex: pen.zIndex}">
         <div class="shadow" data-bind="style: {webkitTransform: pen.shadowTransform, MozTransform: pen.shadowTransform, msTransform: pen.shadowTransform, transform: pen.shadowTransform}"></div>
         <div class="brush" data-bind="style: {webkitTransform: pen.transform, MozTransform: pen.transform, msTransform: pen.transform, transform: pen.transform}"></div>
@@ -25,8 +26,6 @@
         <div class="brush" data-bind="style: {webkitTransform: waterbrush.transform, MozTransform: waterbrush.transform, msTransform: waterbrush.transform, transform: waterbrush.transform}"></div>
       </div>
     </div>
-    
-    <canvas id="debugboard" width="750" height="500"></canvas>
     
     <div id="sidebar">
       <div id="toolbox">
@@ -56,9 +55,11 @@
     </div>
   </div>
   
+  <!-- JS Libraries -->
   
-  <script src="js/lib/jquery-1.4.2.min.js"></script>
+  <script src="js/lib/jquery-1.5.1.min.js"></script>
   <script src="js/lib/knockout-1.1.2.debug.js"></script>
+  <script src="js/lib/amplify.min.js"></script>
   
   <!-- ViewModels -->
   
@@ -67,15 +68,16 @@
   <script src="js/viewmodels/canvas.js"></script>
   <script src="js/viewmodels/palette.js"></script>
   <script src="js/viewmodels/controls.js"></script>
+  <script src="js/viewmodels/drawing.js"></script>
   
   <!-- Brush Renderers -->
   
   <script src="js/renderers/water.js"></script>
   <script src="js/renderers/ink.js"></script>
+  <script src="js/renderers/marker.js"></script>
   
   <!-- Main -->
   
-  <script src="js/drawing.js"></script>
   <script src="js/main.js"></script>
   
 </body>

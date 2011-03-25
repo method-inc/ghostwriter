@@ -1,4 +1,4 @@
-(function() {
+(function($, ko) {
 
   // Create Drawing instance
   
@@ -9,16 +9,17 @@
   var mouse         = new Mouse(),
       activebrush   = ko.observable(null),
       pen           = new Brush(mouse, 'pen_holder', activebrush, 'drawing', 'inkRenderer', drawing)
-      inkbrush      = new Brush(mouse, 'inkbrush_holder', activebrush, 'drawing', 'inkRenderer', drawing),
+      inkbrush      = new Brush(mouse, 'inkbrush_holder', activebrush, 'drawing', 'markerRenderer', drawing),
       waterbrush    = new Brush(mouse, 'waterbrush_holder', activebrush, 'drawing', 'waterRenderer', drawing),
       palette       = new Palette(drawing),
-      canvas        = new Canvas('artboard'),
+      canvas        = new Canvas('artboard', 'workboard'),
       controls      = new Controls(drawing);
   
   // Create Renderers
   
-  var waterRenderer = new WaterRenderer(canvas, palette),
-      inkRenderer   = new InkRenderer(canvas, palette);
+  var waterRenderer   = new WaterRenderer(canvas, palette),
+      inkRenderer     = new InkRenderer(canvas, palette),
+      markerRenderer  = new MarkerRenderer(canvas, palette);
     
   // Init ViewModels
   
@@ -75,4 +76,4 @@
   document.onmousedown = function() {return false;} // mozilla
   
   
-})();
+})(jQuery, ko);

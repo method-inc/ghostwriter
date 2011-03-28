@@ -2,14 +2,14 @@
 
   var historyLimit = 65536;
   
-  function trigger(events, index, callback) {
+  function trigger(events, index, interval, callback) {
     var event = events[index];
     $(document).trigger(event.name, event.args);
     if (++index < events.length) {
-      if (index % 5 === 0)
-        window.setTimeout(trigger, 15, events, index, callback);
+      if (index % interval === 0)
+        window.setTimeout(trigger, 15, events, index, interval, callback);
       else
-        trigger(events, index, callback);
+        trigger(events, index, interval, callback);
     }
     else {
       callback();
@@ -40,11 +40,12 @@
       $(document).trigger('canvas.clear');
     },
     
-    play: function() {
+    play: function(interval) {
       var self = this;
+      interval = interval || 10;
       this.playing(true);
       $(document).trigger('canvas.clear');
-      trigger(this.events, 0, function() {
+      trigger(this.events, 0, interval, function() {
         self.playing(false);
       });
     },

@@ -33,7 +33,7 @@ ul {
   top: 50%;
   left: 50%;
   margin-top: -250px;
-  margin-left: -475px;
+  margin-left: -570px;
 }
 
 #drawing {
@@ -42,7 +42,7 @@ ul {
   right: 0;
   width: 750px;
   height: 500px;
-  background: #eee url(images/canvas2.jpg);
+  background: #eee url(images/paper3.jpg);
   box-shadow: 1px 1px 5px #000;
   cursor: url(images/chrome_cursor.png), url(images/blank.cur), none !important;
 }
@@ -89,7 +89,7 @@ ul {
 #toolbox {
   z-index: 8000;
   position: absolute;
-  top: 0;
+  top: 200px;
   right: -80px;
 }
 #toolbox ul {

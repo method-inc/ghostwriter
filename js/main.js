@@ -75,5 +75,8 @@
   document.onselectstart = function() {return false;} // ie
   document.onmousedown = function() {return false;} // mozilla
   
+  // Draw any saved path
+  
+  drawing.play(20);
   
 })(jQuery, ko);

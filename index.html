@@ -21,9 +21,9 @@
         <div class="brush" data-bind="style: {webkitTransform: inkbrush.transform, MozTransform: inkbrush.transform, msTransform: inkbrush.transform, transform: inkbrush.transform}"></div>
       </div>
       
-      <div id="waterbrush" data-bind="visible: waterbrush.visible, css: {down: waterbrush.down}, style: {left: waterbrush.left, top: waterbrush.top, zIndex: waterbrush.zIndex}">
-        <div class="shadow" data-bind="style: {webkitTransform: waterbrush.shadowTransform, MozTransform: waterbrush.shadowTransform, msTransform: waterbrush.shadowTransform, transform: waterbrush.shadowTransform}"></div>
-        <div class="brush" data-bind="style: {webkitTransform: waterbrush.transform, MozTransform: waterbrush.transform, msTransform: waterbrush.transform, transform: waterbrush.transform}"></div>
+      <div id="marker" data-bind="visible: marker.visible, css: {down: marker.down}, style: {left: marker.left, top: marker.top, zIndex: marker.zIndex}">
+        <div class="shadow" data-bind="style: {webkitTransform: marker.shadowTransform, MozTransform: marker.shadowTransform, msTransform: marker.shadowTransform, transform: marker.shadowTransform}"></div>
+        <div class="brush" data-bind="style: {webkitTransform: marker.transform, MozTransform: marker.transform, msTransform: marker.transform, transform: marker.transform}"></div>
       </div>
     </div>
     
@@ -49,8 +49,8 @@
     
     <div id="toolbox">
       <ul>
+        <li id="marker_holder" data-bind="css: {invisible: ViewModel.marker.active}, click: function() { ViewModel.activebrush(ViewModel.marker); }"></li>
         <li id="inkbrush_holder" data-bind="css: {invisible: ViewModel.inkbrush.active}, click: function() { ViewModel.activebrush(ViewModel.inkbrush); }"></li>
-        <li id="waterbrush_holder" data-bind="css: {invisible: ViewModel.waterbrush.active}, click: function() { ViewModel.activebrush(ViewModel.waterbrush); }"></li>
         <li id="pen_holder" data-bind="css: {invisible: ViewModel.pen.active}, click: function() { ViewModel.activebrush(ViewModel.pen); }"></li>
       </ul>
     </div>

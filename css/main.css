@@ -231,33 +231,34 @@ ul {
   left: -28px;
 }
 
-/* Watercolor Brush */
+/* Marker */
 
-#waterbrush {
-  position: absolute;
-  width: 284px;
-  height: 830px;
-  top: 0;
-  left: 0;
-}
-#waterbrush .brush {
+#marker {
   position: absolute;
   top: 0;
   left: 0;
-  background: transparent url(images/waterbrush.png) top right no-repeat;
-  width: 284px;
-  height: 830px;
+  width: 43px;
+  height: 762px;
 }
-#waterbrush .shadow {
+#marker .brush {
   position: absolute;
-  left: 55px;
-  top: 300px;
-  width: 160px;
+  top: -3px;
+  left: 0;
+  background: transparent url(images/marker.png) top right no-repeat;
+  width: 43px;
+  height: 762px;
+}
+#marker .shadow {
+  position: absolute;
+  left: -25px;
+  top: 250px;
+  width: 80px;
   height: 266px;
-  background: transparent url(images/shadow.png) top right no-repeat;
+  background: transparent url(images/shadow.png) bottom left no-repeat;
 }
-#waterbrush.down .brush {
-  background-image: url(images/waterbrush_down.png);
+#marker.down .brush {
+  top: 0px;
 }
-
-
+#marker.down .shadow {
+  left: -30px;
+}

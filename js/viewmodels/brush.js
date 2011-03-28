@@ -1,19 +1,23 @@
 (function($, ko) {
   
-  function Brush(mouse, holder, activebrush, container, renderer, drawing) {
+  function Brush(mouse, el, holder, activebrush, container, renderer, drawing) {
   
     var self = this;
     
+    this.el = $('#' + el);
     this.mouse = mouse;
     this.holder = holder;
     this.container = container;
     this.renderer = renderer;
     this.drawing = drawing;
     
-    this.width = 284;
-    this.height = 890;
-    this.shadowWidth = 160;
-    this.shadowHeight = 266;
+    this.restLean = 20;
+    this.width = this.el.width();
+    this.height = this.el.height();
+    
+    var shadow = this.el.find('.shadow');
+    this.shadowWidth = shadow.width();
+    this.shadowHeight = shadow.height();
     
     this.lastPos = {x: 0, y: 0};
     
@@ -56,16 +60,16 @@
     }, this);
     
     this.left = ko.dependentObservable(function() {
-      return (this.pos().x - this.width * .5 - 5) + 'px';
+      return (this.pos().x - this.width * .5 - 1) + 'px';
     }, this);
     this.top = ko.dependentObservable(function() {
-      return (this.pos().y - this.height * .5 + 1) + 'px';
+      return (this.pos().y - this.height * .5) + 'px';
     }, this);
     this.zIndex = ko.dependentObservable(function() {
       return ~~this.pos().y;
     }, this);
     this.lean = ko.dependentObservable(function() {
-      return (this.pos().x - this.wx()) * -.1;
+      return Math.min(35, Math.max(-35, (this.pos().x - this.wx()) * -.15)) + this.restLean;
     }, this);
     this.transform = ko.dependentObservable(function() {
       return 'rotate(' + this.lean() + 'deg)';
@@ -77,7 +81,7 @@
       return (this.pos().y - this.shadowHeight * .5 - 7) + 'px';
     }, this);
     this.shadowTransform = ko.dependentObservable(function() {
-      return 'rotate(' + (-this.lean() - 300) + 'deg)';
+      return 'rotate(' + (-this.lean() - 60) + 'deg)';
     }, this);
     
     // Custom event drawings

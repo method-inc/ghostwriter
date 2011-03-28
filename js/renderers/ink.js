@@ -7,7 +7,8 @@
     
     this.settings = {
       blot: 3,
-      stroke: 6
+      stroke: 6,
+      thinDistance: 4
     };
     
     $.extend(this.settings, options || {})
@@ -54,10 +55,10 @@
       var dx = this.position[1].x - this.position[0].x,
           dy = this.position[1].y - this.position[0].y,
           dist = Math.sqrt(dx * dx + dy * dy) || 1;
-      this.width += ((this.settings.stroke * (1 - (dist / 15))) - this.width) * .25;
+      this.width += ((this.settings.stroke * (1 - (dist / this.settings.thinDistance))) - this.width) * .25;
       this.width = Math.min(15, Math.max(1, this.width));
       this.ctx.save();
-        this.ctx.strokeStyle = 'rgba(' + this.color.join(',') + ', 1)';
+        this.ctx.strokeStyle = 'rgba(' + this.color.join(',') + ', .7)';
         this.ctx.lineWidth = this.width;
         this.ctx.beginPath();
         this.ctx.moveTo(this.position[0].x, this.position[0].y);

@@ -40,24 +40,39 @@
   
   MarkerRenderer.prototype = {
     
-    stroke: function() {
-      this.work.clearRect(0, 0, 750, 500);
-      this.work.save();
-        this.work.strokeStyle = 'rgba(' + this.color.join(',') + ', .5)';
-        this.work.lineWidth = 10;
-        this.work.beginPath();
-        this.work.moveTo(this.currentStroke[0].x, this.currentStroke[0].y);
-        for (var i = 1; i < this.currentStroke.length; i++) {
-          this.work.lineTo(this.currentStroke[i].x, this.currentStroke[i].y);
+    _drawLine: function(ctx, points, width, color) {
+      if (points.length === 0) return;
+      ctx.save();
+        if (color === null) {
+          ctx.globalCompositeOperation = 'destination-out';
+          ctx.strokeStyle = '#000';
         }
-        this.work.stroke();
-      this.work.restore();
+        else {
+          ctx.strokeStyle = color;
+        }
+        ctx.lineWidth = 10;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.beginPath();
+        ctx.moveTo(this.currentStroke[0].x, this.currentStroke[0].y);
+        for (var i = 1; i < this.currentStroke.length; i++) {
+          ctx.lineTo(this.currentStroke[i].x, this.currentStroke[i].y);
+        }
+        ctx.stroke();
+      ctx.restore();
+    },
+    
+    stroke: function() {
+      this._drawLine(this.work, this.currentStroke, 12, null);
+      this._drawLine(this.work, this.currentStroke, 10, 'rgba(' + this.color.join(',') + ', .33)');
     },
     
     imprint: function() {
-      //this.ctx.globalCompositeOperation = 'darker';
-      this.ctx.drawImage(this.canvas.work, 0, 0);
-      this.canvas.workCtx.clearRect(0, 0, 750, 500);
+      //this.ctx.drawImage(this.canvas.work, 0, 0);
+      //this.canvas.workCtx.clearRect(0, 0, 750, 500);
+      this._drawLine(this.work, this.currentStroke, 12, null);
+      this._drawLine(this.ctx, this.currentStroke, 10, 'rgba(' + this.color.join(',') + ', .33)');
+      this.currentStroke = [];
     }
     
   }

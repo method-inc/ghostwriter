@@ -8,9 +8,9 @@
   
   var mouse         = new Mouse(),
       activebrush   = ko.observable(null),
-      pen           = new Brush(mouse, 'pen_holder', activebrush, 'drawing', 'inkRenderer', drawing)
-      inkbrush      = new Brush(mouse, 'inkbrush_holder', activebrush, 'drawing', 'markerRenderer', drawing),
-      waterbrush    = new Brush(mouse, 'waterbrush_holder', activebrush, 'drawing', 'waterRenderer', drawing),
+      pen           = new Brush(mouse, 'pen', 'pen_holder', activebrush, 'drawing', 'inkRenderer', drawing)
+      inkbrush      = new Brush(mouse, 'brush', 'inkbrush_holder', activebrush, 'drawing', 'markerRenderer', drawing),
+      waterbrush    = new Brush(mouse, 'waterbrush', 'waterbrush_holder', activebrush, 'drawing', 'waterRenderer', drawing),
       palette       = new Palette(drawing),
       canvas        = new Canvas('artboard', 'workboard'),
       controls      = new Controls(drawing);

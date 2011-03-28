@@ -28,13 +28,6 @@
     </div>
     
     <div id="sidebar">
-      <div id="toolbox">
-        <ul>
-          <li id="inkbrush_holder" data-bind="css: {invisible: ViewModel.inkbrush.active}, click: function() { ViewModel.activebrush(ViewModel.inkbrush); }"></li>
-          <li id="waterbrush_holder" data-bind="css: {invisible: ViewModel.waterbrush.active}, click: function() { ViewModel.activebrush(ViewModel.waterbrush); }"></li>
-          <li id="pen_holder" data-bind="css: {invisible: ViewModel.pen.active}, click: function() { ViewModel.activebrush(ViewModel.pen); }"></li>
-        </ul>
-      </div>
       
       <div id="palette">
         <ul class="colors">
@@ -53,6 +46,20 @@
         </ul>
       </div>
     </div>
+    
+    <div id="toolbox">
+      <ul>
+        <li id="inkbrush_holder" data-bind="css: {invisible: ViewModel.inkbrush.active}, click: function() { ViewModel.activebrush(ViewModel.inkbrush); }"></li>
+        <li id="waterbrush_holder" data-bind="css: {invisible: ViewModel.waterbrush.active}, click: function() { ViewModel.activebrush(ViewModel.waterbrush); }"></li>
+        <li id="pen_holder" data-bind="css: {invisible: ViewModel.pen.active}, click: function() { ViewModel.activebrush(ViewModel.pen); }"></li>
+      </ul>
+    </div>
+    
+    <div id="footer">
+      <p>
+        &copy; Skookum, Inc. 2011
+      </p>
+    </div>
   </div>
   
   <!-- JS Libraries -->
@@ -60,6 +67,7 @@
   <script src="js/lib/jquery-1.5.1.min.js"></script>
   <script src="js/lib/knockout-1.1.2.debug.js"></script>
   <script src="js/lib/amplify.min.js"></script>
+  <script src="js/lib/procrastinate.js"></script>
   
   <!-- ViewModels -->
   

@@ -1,7 +1,7 @@
 body {
   background: #333;
   overflow: hidden;
-  background: url(images/wood2_glow.jpg) top left no-repeat, url(images/wood2.jpg) top left;
+  background: url(images/wood2.jpg) top left;
   width: 100%;
   height: 100%;
   padding: 0;
@@ -44,6 +44,7 @@ ul {
   height: 500px;
   background: #eee url(images/canvas2.jpg);
   box-shadow: 1px 1px 5px #000;
+  cursor: url(images/chrome_cursor.png), url(images/blank.cur), none !important;
 }
 
 #artboard, #workboard {
@@ -52,7 +53,6 @@ ul {
   left: 0;
   width: 750px;
   height: 500px;
-  opacity: 0.85;
 }
 
 .brushy #artboard {
@@ -66,7 +66,7 @@ ul {
   top: 0;
   left: -9820px;
   width: 10000px;
-  height: 500px;
+  height: 3000px;
   z-index: 10000;
   cursor: default !important;
 }
@@ -75,7 +75,7 @@ ul {
 
 #controls {
   position: absolute;
-  bottom: 80px;
+  top: 300px;
   right: 0;
   border: solid 1px red;
 }
@@ -87,9 +87,10 @@ ul {
 /* Drawing tools */
 
 #toolbox {
+  z-index: 8000;
   position: absolute;
   top: 0;
-  right: 0px;
+  right: -80px;
 }
 #toolbox ul {
   list-style: none;
@@ -118,7 +119,7 @@ ul {
 
 #palette {
   position: absolute;
-  right: 80px;
+  right: 0px;
   top: 0;
   z-index: 10000;
 }
@@ -170,57 +171,64 @@ ul {
   position: absolute;
   top: 0;
   left: 0;
-  width: 284px;
-  height: 830px;
+  width: 30px;
+  height: 766px;
 }
 #pen .brush {
   position: absolute;
-  top: 0;
+  top: -3px;
   left: 0;
-  background: transparent url(images/pen.png) top right no-repeat;
-  width: 284px;
-  height: 830px;
+  background: transparent url(images/pen_straight.png) top right no-repeat;
+  width: 30px;
+  height: 766px;
 }
 #pen .shadow {
   position: absolute;
-  left: 55px;
-  top: 300px;
-  width: 160px;
+  left: -25px;
+  top: 250px;
+  width: 80px;
   height: 266px;
-  background: transparent url(images/shadow.png) top right no-repeat;
+  background: transparent url(images/shadow.png) bottom left no-repeat;
 }
 #pen.down .brush {
-  background-image: url(images/pen_down.png);
+  top: 0px;
+}
+#pen.down .shadow {
+  left: -30px;
 }
 
 
-/* Kanji Brush */
+/* Brush */
 
 #brush {
   position: absolute;
   top: 0;
   left: 0;
-  width: 284px;
-  height: 830px;
+  width: 29px;
+  height: 928px;
 }
 #brush .brush {
   position: absolute;
-  top: 0;
+  top: -5px;
   left: 0;
   background: transparent url(images/paintbrush.png) top right no-repeat;
-  width: 284px;
-  height: 830px;
+  width: 29px;
+  height: 928px;
 }
 #brush .shadow {
   position: absolute;
-  left: 55px;
-  top: 300px;
-  width: 160px;
+  left: -24px;
+  top: 327px;
+  width: 80px;
   height: 266px;
-  background: transparent url(images/shadow.png) top right no-repeat;
+  background: transparent url(images/shadow.png) bottom left no-repeat;
 }
 #brush.down .brush {
   background-image: url(images/paintbrush_down.png);
+  top: 5px;
+}
+#brush.down .shadow {
+  left: -28px;
 }
 
 /* Watercolor Brush */

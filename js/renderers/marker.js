@@ -21,7 +21,8 @@
     this.debug = $('#workboard')[0].getContext('2d');
     
     $(document).bind(ns + '.down', function(event, position) {
-      self.currentStroke = [{x: position.x, y: position.y}];
+      self.currentStroke = [{x: position.x, y: position.y}, {x: position.x + .1, y: position.y + .1}];
+      self.stroke();
     });
     
     $(document).bind(ns + '.move', function(event, position) {

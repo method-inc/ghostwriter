@@ -238,7 +238,7 @@ ul {
   top: 0;
   left: 0;
   width: 43px;
-  height: 762px;
+  height: 760px;
 }
 #marker .brush {
   position: absolute;
@@ -246,11 +246,11 @@ ul {
   left: 0;
   background: transparent url(images/marker.png) top right no-repeat;
   width: 43px;
-  height: 762px;
+  height: 760px;
 }
 #marker .shadow {
   position: absolute;
-  left: -25px;
+  left: -20px;
   top: 250px;
   width: 80px;
   height: 266px;
@@ -260,5 +260,5 @@ ul {
   top: 0px;
 }
 #marker.down .shadow {
-  left: -30px;
+  left: -25px;
 }

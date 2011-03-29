@@ -8,17 +8,19 @@
 <body>
   
   <div id="wrap">
+  
     <div id="drawing">
       <canvas id="artboard" width="750" height="500"></canvas>
       <canvas id="workboard" width="750" height="500"></canvas>
+      
       <div id="pen" data-bind="visible: pen.visible, css: {down: pen.down}, style: {left: pen.left, top: pen.top, zIndex: pen.zIndex}">
         <div class="shadow" data-bind="style: {webkitTransform: pen.shadowTransform, MozTransform: pen.shadowTransform, msTransform: pen.shadowTransform, transform: pen.shadowTransform}"></div>
         <div class="brush" data-bind="style: {webkitTransform: pen.transform, MozTransform: pen.transform, msTransform: pen.transform, transform: pen.transform}"></div>
       </div>
       
-      <div id="brush" data-bind="visible: inkbrush.visible, css: {down: inkbrush.down}, style: {left: inkbrush.left, top: inkbrush.top, zIndex: inkbrush.zIndex}">
-        <div class="shadow" data-bind="style: {webkitTransform: inkbrush.shadowTransform, MozTransform: inkbrush.shadowTransform, msTransform: inkbrush.shadowTransform, transform: inkbrush.shadowTransform}"></div>
-        <div class="brush" data-bind="style: {webkitTransform: inkbrush.transform, MozTransform: inkbrush.transform, msTransform: inkbrush.transform, transform: inkbrush.transform}"></div>
+      <div id="spraygun" data-bind="visible: spraygun.visible, css: {down: spraygun.down}, style: {left: spraygun.left, top: spraygun.top, zIndex: spraygun.zIndex}">
+        <div class="shadow" data-bind="style: {webkitTransform: spraygun.shadowTransform, MozTransform: spraygun.shadowTransform, msTransform: spraygun.shadowTransform, transform: spraygun.shadowTransform}"></div>
+        <div class="brush" data-bind="style: {webkitTransform: spraygun.transform, MozTransform: spraygun.transform, msTransform: spraygun.transform, transform: spraygun.transform}"></div>
       </div>
       
       <div id="marker" data-bind="visible: marker.visible, css: {down: marker.down}, style: {left: marker.left, top: marker.top, zIndex: marker.zIndex}">
@@ -53,7 +55,7 @@
     <div id="toolbox">
       <ul>
         <li id="marker_holder" data-bind="css: {invisible: ViewModel.marker.active}, click: function() { ViewModel.activebrush(ViewModel.marker); }"></li>
-        <li id="inkbrush_holder" data-bind="css: {invisible: ViewModel.inkbrush.active}, click: function() { ViewModel.activebrush(ViewModel.inkbrush); }"></li>
+        <li id="spraygun_holder" data-bind="css: {invisible: ViewModel.spraygun.active}, click: function() { ViewModel.activebrush(ViewModel.spraygun); }"></li>
         <li id="pen_holder" data-bind="css: {invisible: ViewModel.pen.active}, click: function() { ViewModel.activebrush(ViewModel.pen); }"></li>
       </ul>
     </div>

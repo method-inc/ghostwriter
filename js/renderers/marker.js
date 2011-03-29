@@ -29,7 +29,6 @@
     $(document).bind(ns + '.move', function(event, position) {
       if (self.currentStroke.length > self.maxLength) {
         self.imprint();
-        self.currentStroke = [];
       }
       self.currentStroke.push({x: position.x, y: position.y});
       self.stroke();

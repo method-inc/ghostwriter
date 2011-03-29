@@ -9,7 +9,7 @@
   var mouse         = new Mouse(),
       activebrush   = ko.observable(null),
       pen           = new Brush(mouse, 'pen', 'pen_holder', activebrush, 'drawing', 'inkRenderer', drawing)
-      inkbrush      = new Brush(mouse, 'brush', 'inkbrush_holder', activebrush, 'drawing', 'waterRenderer', drawing),
+      spraygun      = new Brush(mouse, 'spraygun', 'spraygun_holder', activebrush, 'drawing', 'waterRenderer', drawing),
       marker    = new Brush(mouse, 'marker', 'marker_holder', activebrush, 'drawing', 'markerRenderer', drawing),
       palette       = new Palette(drawing),
       canvas        = new Canvas('artboard', 'workboard'),
@@ -39,7 +39,7 @@
   
   window.ViewModel = {
     pen: pen,
-    inkbrush: inkbrush,
+    spraygun: spraygun,
     marker: marker,
     mouse: mouse,
     activebrush: activebrush,

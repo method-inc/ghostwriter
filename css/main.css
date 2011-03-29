@@ -209,35 +209,28 @@ ul {
 
 /* Brush */
 
-#brush {
+#spraygun {
   position: absolute;
   top: 0;
   left: 0;
-  width: 29px;
-  height: 928px;
+  width: 75px;
+  height: 716px;
 }
-#brush .brush {
+#spraygun .brush {
   position: absolute;
-  top: -5px;
+  top: -10px;
   left: 0;
-  background: transparent url(images/paintbrush.png) top right no-repeat;
-  width: 29px;
-  height: 928px;
+  background: transparent url(images/spraygun.png) top center no-repeat;
+  width: 75px;
+  height: 716px;
 }
-#brush .shadow {
+#spraygun .shadow {
   position: absolute;
-  left: -24px;
-  top: 327px;
+  left: 0px;
+  top: 230px;
   width: 80px;
   height: 266px;
   background: transparent url(images/shadow.png) bottom left no-repeat;
-}
-#brush.down .brush {
-  background-image: url(images/paintbrush_down.png);
-  top: 5px;
-}
-#brush.down .shadow {
-  left: -28px;
 }
 
 /* Marker */

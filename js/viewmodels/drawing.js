@@ -40,9 +40,11 @@
       $(document).trigger('canvas.clear');
     },
     
-    play: function(interval) {
-      var self = this;
-      interval = interval || 10;
+    play: function(steps) {
+      if (this.playing()) return;
+      steps = steps || 60;
+      var self = this,
+          interval = ~~Math.max(1, Math.min(15, this.events.length / steps));
       this.playing(true);
       $(document).trigger('canvas.clear');
       trigger(this.events, 0, interval, function() {

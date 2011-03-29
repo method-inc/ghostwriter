@@ -31,18 +31,21 @@
       
       <div id="palette">
         <ul class="colors">
-          <li id="red" data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.red); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.red }"></li>
-          <li id="green" data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.green); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.green }"></li>
-          <li id="blue" data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.blue); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.blue }"></li>
-          <li id="black" data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.black); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.black }"></li>
-          <li id="white" data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.white); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.white }"></li>
+          <li class='color' data-color='169,21,61' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.red); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.red }"><div class="swatch"></div></li>
+          <li class='color' data-color='255,249,181' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.green); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.green }"><div class="swatch"></div></li>
+          <li class='color' data-color='184,180,98' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.blue); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.blue }"><div class="swatch"></div></li>
+          <li class='color' data-color='148,158,45' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.black); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.black }"><div class="swatch"></div></li>
+          <li class='color' data-color='0,105,105' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.white); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.white }"><div class="swatch"></div></li>
+          <li class='color' data-color='112,161,133' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.white); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.white }"><div class="swatch"></div></li>
+          <li class='color' data-color='0,0,0' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.black); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.black }"><div class="swatch"></div></li>
+          <li class='color' data-color='255,255,255' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.white); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.white }"><div class="swatch"></div></li>
         </ul>
       </div>
       
       <div id="controls">
         <ul>
-          <li><a data-bind="click: ViewModel.controls.clear" href='#'>Clear</a></li>
-          <li><a data-bind='click: ViewModel.controls.playback' href='#'>Playback</a></li>
+          <li><a id="clearbutton" data-bind="click: ViewModel.controls.clear" href='#'><span>Clear</span></a></li>
+          <li><a id="playbutton" data-bind='css: {playing: ViewModel.drawing.playing}, click: ViewModel.controls.playback' href='#'><span>Playback</span></a></li>
         </ul>
       </div>
     </div>

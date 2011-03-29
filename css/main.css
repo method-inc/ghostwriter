@@ -75,13 +75,40 @@ ul {
 
 #controls {
   position: absolute;
-  top: 300px;
-  right: 0;
-  border: solid 1px red;
+  top: 170px;
+  right: 80px;
 }
 
 #controls li {
-  margin: 20px;
+  margin-bottom: 10px;
+}
+
+#controls a {
+  display: block;
+}
+
+#controls a span {
+  display: none;
+}
+
+#playbutton {
+  width: 72px;
+  height: 82px;
+  background: transparent url(images/switch_up.png) top left no-repeat;
+}
+
+#playbutton.playing {
+  background-image: url(images/switch_down.png);  
+}
+
+#clearbutton {
+  width: 72px;
+  height: 34px;
+  background: transparent url(images/clear.png) top left no-repeat;
+}
+
+#clearbutton:hover {
+  background-position: bottom left;
 }
 
 /* Drawing tools */
@@ -102,10 +129,6 @@ ul {
   width: 50px;
   height: 50px;
   background-color: rgba(255, 255, 255, .07);
-  /*
-  border-right: solid 2px rgba(255, 255, 255, .2);
-  border-bottom: solid 1px rgba(255, 255, 255, .3);
-  */
   -webkit-border-radius: 5px;
 }
 #toolbox, #toolbox ul, #toolbox li {
@@ -130,33 +153,19 @@ ul {
 
 .colors li {
   position: relative;
-  width: 50px;
-  height: 49px;
+  width: 45px;
+  height: 40px;
   cursor: pointer !important;
+  margin: 10px 15px 20px 20px;
 }
 
-.colors li.active {
-  left: -10px;
-}
-
-#red {
-  background: transparent url(images/red.png) center no-repeat;
-}
-
-#green {
-  background: transparent url(images/green.png) center no-repeat;
-}
-
-#blue {
-  background: transparent url(images/blue.png) center no-repeat;
-}
-
-#black {
-  background: transparent url(images/black.png) center no-repeat;
-}
-
-#white {
-  background: transparent url(images/white.png) center no-repeat;
+.swatch {
+  position: absolute;
+  left: -6px;
+  top: -3px;
+  width: 60px;
+  height: 54px;
+  background: transparent url(images/container.png) top left no-repeat;
 }
 
 /* Brushes */

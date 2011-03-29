@@ -45,7 +45,8 @@
     activebrush: activebrush,
     palette: palette,
     canvas: canvas,
-    controls: controls
+    controls: controls,
+    drawing: drawing
   };
   
   // Bind Views to ViewModel
@@ -69,6 +70,12 @@
       return false;
     }
   );
+  
+  // Modify the DOM
+  
+  $('.color').each(function(color) {
+    $(this).css('background-color', 'rgb(' + $(this).attr('data-color') + ')');
+  });
 
   // Disable text selection
   
@@ -77,6 +84,6 @@
   
   // Draw any saved path
   
-  drawing.play(20);
+  drawing.play(30);
   
 })(jQuery, ko);

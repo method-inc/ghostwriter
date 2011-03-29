@@ -27,6 +27,7 @@
     
     clear: function() {
       this.controls.drawing.clear();
+      this.palette.active(this.palette.active());   // There may be a more elegant way to store starting color information
     }
   }
   

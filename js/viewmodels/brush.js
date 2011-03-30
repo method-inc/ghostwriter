@@ -51,7 +51,7 @@
     this.wx = ko.observable(this.pos().x);
     
     this.down = ko.dependentObservable(function() {
-      if (this.active() && this.tracking() && !this.drawing.playing()) {
+      if (this.active() && this.tracking()) {
         return this.mouse.down();
       }
       else {

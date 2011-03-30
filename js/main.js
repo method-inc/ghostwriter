@@ -1,23 +1,20 @@
 (function($, ko) {
-
-  // Create Drawing instance
-  
-  var drawing = new Drawing();
   
   // Create VM instances
   
-  var mouse         = new Mouse(),
+  var canvas        = new Canvas('artboard', 'workboard'),
+      drawing       = new Drawing(canvas);
+      mouse         = new Mouse(),
       activebrush   = ko.observable(null),
       pen           = new Brush(mouse, 'pen', 'pen_holder', activebrush, 'drawing', 'inkRenderer', drawing)
-      spraygun      = new Brush(mouse, 'spraygun', 'spraygun_holder', activebrush, 'drawing', 'waterRenderer', drawing),
+      spraygun      = new Brush(mouse, 'spraygun', 'spraygun_holder', activebrush, 'drawing', 'sprayRenderer', drawing),
       marker    = new Brush(mouse, 'marker', 'marker_holder', activebrush, 'drawing', 'markerRenderer', drawing),
       palette       = new Palette(drawing),
-      canvas        = new Canvas('artboard', 'workboard'),
       controls      = new Controls(drawing);
   
   // Create Renderers
   
-  var waterRenderer   = new WaterRenderer(canvas, palette),
+  var sprayRenderer   = new SprayRenderer(canvas, palette),
       inkRenderer     = new InkRenderer(canvas, palette),
       markerRenderer  = new MarkerRenderer(canvas, palette);
     
@@ -82,8 +79,8 @@
   document.onselectstart = function() {return false;} // ie
   document.onmousedown = function() {return false;} // mozilla
   
-  // Draw any saved path
+  // Load any stored image
   
-  drawing.play(30);
+  drawing.load();
   
 })(jQuery, ko);

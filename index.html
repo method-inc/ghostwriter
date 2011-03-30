@@ -33,9 +33,9 @@
       
       <div id="palette">
         <ul class="colors">
+          <li><a id="newbutton" data-bind="click: ViewModel.controls.clear" href='#'><span>Clear</span></a></li>
           <li class='color' data-color='169,21,61' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.red); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.red }"><div class="swatch"></div></li>
-          <li class='color' data-color='255,249,181' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.green); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.green }"><div class="swatch"></div></li>
-          <li class='color' data-color='184,180,98' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.blue); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.blue }"><div class="swatch"></div></li>
+          <li class='color' data-color='234,190,98' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.blue); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.blue }"><div class="swatch"></div></li>
           <li class='color' data-color='148,158,45' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.black); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.black }"><div class="swatch"></div></li>
           <li class='color' data-color='0,105,105' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.white); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.white }"><div class="swatch"></div></li>
           <li class='color' data-color='112,161,133' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.white); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.white }"><div class="swatch"></div></li>
@@ -44,12 +44,6 @@
         </ul>
       </div>
       
-      <div id="controls">
-        <ul>
-          <li><a id="clearbutton" data-bind="click: ViewModel.controls.clear" href='#'><span>Clear</span></a></li>
-          <li><a id="playbutton" data-bind='css: {playing: ViewModel.drawing.playing}, click: ViewModel.controls.playback' href='#'><span>Playback</span></a></li>
-        </ul>
-      </div>
     </div>
     
     <div id="toolbox">
@@ -85,7 +79,7 @@
   
   <!-- Brush Renderers -->
   
-  <script src="js/renderers/water.js"></script>
+  <script src="js/renderers/spray.js"></script>
   <script src="js/renderers/ink.js"></script>
   <script src="js/renderers/marker.js"></script>
   

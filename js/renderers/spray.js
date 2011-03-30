@@ -1,8 +1,8 @@
 (function($, ko) {
 
-  var ns = 'waterRenderer';
+  var ns = 'sprayRenderer';
   
-  function WaterRenderer(canvas, options) {
+  function SprayRenderer(canvas, options) {
     var self = this;
     
     this.settings = {
@@ -41,7 +41,7 @@
     });  
   }
   
-  WaterRenderer.prototype = {
+  SprayRenderer.prototype = {
     
     startDrip: function() {
       if (this.dripping) return;
@@ -78,7 +78,7 @@
     }
   }
   
-  window.WaterRenderer = WaterRenderer;
+  window.SprayRenderer = SprayRenderer;
   
   // Helper constructors
   

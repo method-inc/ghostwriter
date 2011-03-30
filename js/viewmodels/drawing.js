@@ -1,70 +1,42 @@
-(function($, ko, Procrastinate) {
-
-  var historyLimit = 65536;
+(function($, ko, Procrastinate, amplify) {
   
-  function trigger(events, index, interval, callback) {
-    var event = events[index];
-    $(document).trigger(event.name, event.args);
-    if (++index < events.length) {
-      if (index % interval === 0)
-        window.setTimeout(trigger, 15, events, index, interval, callback);
-      else
-        trigger(events, index, interval, callback);
-    }
-    else {
-      callback();
-    }
-  }
-  
-  function Drawing() {
-    this.events = amplify.store('drawing.events') || [];
-    this.playing = ko.observable(false);
-    this.lastTime = new Date().getTime();
+  function Drawing(canvas) {
+    this.canvas = canvas;
   }
   
   Drawing.prototype = {
   
     event: function(name, args) {
       var self = this;
-          now = new Date().getTime(),
-          newEvent = {
-            name: name,
-            args: args,
-            delay: now - this.lastTime
-          };
-      this.lastTime = now;
-      this.events.push(newEvent);
       $(document).trigger(name, args);
-      Procrastinate.start('drawing.save', 500, 10000, this.save, this);
+      Procrastinate.start('drawing.save', 1000, 10000, this.save, this);
     },
     
     clear: function() {
-      this.events = [];
-      this.save();
       $(document).trigger('canvas.clear');
-    },
-    
-    play: function(steps) {
-      if (this.playing()) return;
-      steps = steps || 60;
-      var self = this,
-          interval = ~~Math.max(1, Math.min(15, this.events.length / steps));
-      this.playing(true);
-      $(document).trigger('canvas.clear');
-      trigger(this.events, 0, interval, function() {
-        self.playing(false);
-      });
     },
     
     save: function() {
-      if (this.events.length > historyLimit) {
-        this.events.splice(0, this.events.length - historyLimit);
+      console.log("Saving...");
+      amplify.store('ghostwriter.drawing', this.canvas.el.toDataURL('image/png'));
+    },
+    
+    load: function() {
+      var self = this;
+      console.log("Loading...")
+      if ('ghostwriter.drawing' in amplify.store()) {
+        console.log("Key found...")
+        var img = new Image();
+        img.onload = function() {
+          console.log("image loaded...")
+          self.canvas.ctx.drawImage(img, 0, 0);
+        };
+        img.src = amplify.store('ghostwriter.drawing');
       }
-      amplify.store('drawing.events', this.events);
     }
     
   };
   
   window.Drawing = Drawing;
 
-})(jQuery, ko, Procrastinate);
+})(jQuery, ko, Procrastinate, amplify);

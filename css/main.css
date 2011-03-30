@@ -73,42 +73,18 @@ ul {
 
 /* Buttons */
 
-#controls {
-  position: absolute;
-  top: 170px;
-  right: 80px;
-}
-
-#controls li {
-  margin-bottom: 10px;
-}
-
-#controls a {
+#newbutton {
+  position: relative;
+  left: -6px;
+  top: -13px;
   display: block;
+  width: 60px;
+  height: 54px;
+  background: transparent url(images/new.png) top left no-repeat;
 }
 
-#controls a span {
+#newbutton span {
   display: none;
-}
-
-#playbutton {
-  width: 72px;
-  height: 82px;
-  background: transparent url(images/switch_up.png) top left no-repeat;
-}
-
-#playbutton.playing {
-  background-image: url(images/switch_down.png);  
-}
-
-#clearbutton {
-  width: 72px;
-  height: 34px;
-  background: transparent url(images/clear.png) top left no-repeat;
-}
-
-#clearbutton:hover {
-  background-position: bottom left;
 }
 
 /* Drawing tools */
@@ -143,7 +119,7 @@ ul {
 #palette {
   position: absolute;
   right: 0px;
-  top: 0;
+  top: 10px;
   z-index: 10000;
 }
 

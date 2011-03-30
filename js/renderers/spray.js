@@ -11,7 +11,7 @@
       fps: 25,
       momentum: 0.05,
       radius: 20,
-      spread: 2,
+      spread: 9,
       gravity: 3,
       opacity: 0.02,
       fade: 0.004,

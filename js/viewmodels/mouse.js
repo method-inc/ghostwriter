@@ -11,10 +11,10 @@
         self.pos({x: event.pageX, y: event.pageY});  
       });
       $(document).bind('mousedown', function(event) {
-        self.down(true);
+        if (event.which === 1) self.down(true);
       });
       $(document).bind('mouseup', function(event) {
-        self.down(false);
+        if (event.which === 1) self.down(false);
       });
     }
   }

@@ -19,17 +19,21 @@
   function Drawing() {
     this.events = amplify.store('drawing.events') || [];
     this.playing = ko.observable(false);
+    this.lastTime = new Date().getTime();
   }
   
   Drawing.prototype = {
   
     event: function(name, args) {
-      var newEvent = {
-        name: name,
-        args: args,
-        delay: new Date().getTime() - this.lastTime
-      }, self = this;
-      this.events.push({name: name, args: args});
+      var self = this;
+          now = new Date().getTime(),
+          newEvent = {
+            name: name,
+            args: args,
+            delay: now - this.lastTime
+          };
+      this.lastTime = now;
+      this.events.push(newEvent);
       $(document).trigger(name, args);
       Procrastinate.start('drawing.save', 500, 10000, this.save, this);
     },

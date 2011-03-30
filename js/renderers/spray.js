@@ -2,7 +2,7 @@
 
   var ns = 'sprayRenderer';
   
-  function SprayRenderer(canvas, options) {
+  function SprayRenderer(canvas, palette, options) {
     var self = this;
     
     this.settings = {
@@ -14,8 +14,7 @@
       spread: 9,
       gravity: 3,
       opacity: 0.02,
-      fade: 0.004,
-      color: [0,0,0]
+      fade: 0.004
     };
     
     $.extend(this.settings, options || {})
@@ -23,11 +22,14 @@
     this.ctx = canvas.ctx;
     this.position = [null, null];                                 // [from, to]
     this.dripping = false;
+    this.palette = palette;
+    this.color = palette.active();
     
     this.debug = $('#workboard')[0].getContext('2d');
     
     $(document).bind(ns + '.down', function(event, position) {
       self.position = [{x: position.x, y: position.y}, {x: position.x, y: position.y}];
+      self.color = self.palette.active();
       self.startDrip();
     });
     
@@ -65,7 +67,7 @@
                   y: self.position[1].y - ratio * dy * i
                 },
                 vel = {x: dx, y: dy};
-            new Drop(self.ctx, pos, vel, self.settings);
+            new Drop(self.ctx, pos, vel, self.color, self.settings);
           }
           
           window.setTimeout(update, 1000 / self.settings.fps);
@@ -82,7 +84,7 @@
   
   // Helper constructors
   
-  function Drop(ctx, position, velocity, settings) {
+  function Drop(ctx, position, velocity, color, settings) {
     var self = this;
     
     this.ctx = ctx;
@@ -91,7 +93,7 @@
     this.r = settings.radius;
     this.settings = settings;
     this.opacity = settings.opacity;
-    this.colorString = 'rgba(' + settings.color.join(',') + ',';
+    this.colorString = 'rgba(' + color + ',';
     
     this.debug = $('#workboard')[0].getContext('2d');
     

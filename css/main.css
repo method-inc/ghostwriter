@@ -93,7 +93,7 @@ ul {
 #toolbox {
   z-index: 8000;
   position: absolute;
-  top: 200px;
+  top: 70px;
   right: -80px;
 }
 #toolbox ul {
@@ -145,6 +145,10 @@ ul {
   background: transparent url(images/container.png) top left no-repeat;
 }
 
+.color.active {
+  left: -10px;
+}
+
 /* Brushes */
 
 .brush {
@@ -184,7 +188,7 @@ ul {
 }
 
 
-/* Brush */
+/* Spraygun */
 
 #spraygun {
   position: absolute;
@@ -241,6 +245,39 @@ ul {
 #marker.down .shadow {
   left: -25px;
 }
+
+/* Eraser */
+
+#eraser {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70px;
+  height: 184px;
+}
+#eraser .brush {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  background: transparent url(images/eraser.png) top center no-repeat;
+  width: 70px;
+  height: 184px;
+}
+#eraser .shadow {
+  position: absolute;
+  left: 23px;
+  top: 40px;
+  width: 80px;
+  height: 104px;
+  background: transparent url(images/shadow_eraser.png) bottom left no-repeat;
+}
+#eraser.down .brush {
+  top: 0px;
+}
+#eraser.down .shadow {
+  left: 20px;
+}
+
 
 /* Footer */
 

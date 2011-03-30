@@ -11,10 +11,9 @@
   
     <div id="highlights">
       <ul>
-        <li>technologies:</li>
+        <li>with:</li>
         <li>HTML5</li>
         <li>CSS3</li>
-        <li>Mobile/Tablet</li>
         <li>Canvas</li>
         <li>LocalStorage</li>
       </ul>
@@ -23,6 +22,11 @@
     <div id="drawing">
       <canvas id="artboard" width="750" height="500"></canvas>
       <canvas id="workboard" width="750" height="500"></canvas>
+      
+      <div id="eraser" data-bind="visible: eraser.visible, css: {down: eraser.down}, style: {left: eraser.left, top: eraser.top, zIndex: eraser.zIndex}">
+        <div class="shadow" data-bind="style: {webkitTransform: eraser.shadowTransform, MozTransform: eraser.shadowTransform, msTransform: eraser.shadowTransform, transform: eraser.shadowTransform}"></div>
+        <div class="brush" data-bind="style: {webkitTransform: eraser.transform, MozTransform: eraser.transform, msTransform: eraser.transform, transform: eraser.transform}"></div>
+      </div>
       
       <div id="pen" data-bind="visible: pen.visible, css: {down: pen.down}, style: {left: pen.left, top: pen.top, zIndex: pen.zIndex}">
         <div class="shadow" data-bind="style: {webkitTransform: pen.shadowTransform, MozTransform: pen.shadowTransform, msTransform: pen.shadowTransform, transform: pen.shadowTransform}"></div>
@@ -45,13 +49,13 @@
       <div id="palette">
         <ul class="colors">
           <li><a id="newbutton" data-bind="click: ViewModel.controls.clear" href='#'><span>Clear</span></a></li>
-          <li class='color' data-color='169,21,61' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.red); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.red }"><div class="swatch"></div></li>
-          <li class='color' data-color='234,190,98' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.blue); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.blue }"><div class="swatch"></div></li>
-          <li class='color' data-color='148,158,45' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.black); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.black }"><div class="swatch"></div></li>
-          <li class='color' data-color='0,105,105' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.white); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.white }"><div class="swatch"></div></li>
-          <li class='color' data-color='112,161,133' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.white); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.white }"><div class="swatch"></div></li>
-          <li class='color' data-color='0,0,0' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.black); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.black }"><div class="swatch"></div></li>
-          <li class='color' data-color='255,255,255' data-bind="click: function() { ViewModel.palette.active(ViewModel.palette.colors.white); }, css: {active: ViewModel.palette.active() === ViewModel.palette.colors.white }"><div class="swatch"></div></li>
+          <li class='color active' data-color='0,0,0'><div class="swatch"></div></li>
+          <li class='color' data-color='169,21,61'><div class="swatch"></div></li>
+          <li class='color' data-color='162,61,133'><div class="swatch"></div></li>
+          <li class='color' data-color='0,105,105'><div class="swatch"></div></li>
+          <li class='color' data-color='148,158,45'><div class="swatch"></div></li>
+          <li class='color' data-color='234,190,98'><div class="swatch"></div></li>
+          <li class='color' data-color='255,255,255'><div class="swatch"></div></li>
         </ul>
       </div>
       
@@ -59,6 +63,7 @@
     
     <div id="toolbox">
       <ul>
+        <li id="eraser_holder" data-bind="css: {invisible: ViewModel.eraser.active}, click: function() { ViewModel.activebrush(ViewModel.eraser); }"></li>
         <li id="marker_holder" data-bind="css: {invisible: ViewModel.marker.active}, click: function() { ViewModel.activebrush(ViewModel.marker); }"></li>
         <li id="spraygun_holder" data-bind="css: {invisible: ViewModel.spraygun.active}, click: function() { ViewModel.activebrush(ViewModel.spraygun); }"></li>
         <li id="pen_holder" data-bind="css: {invisible: ViewModel.pen.active}, click: function() { ViewModel.activebrush(ViewModel.pen); }"></li>
@@ -95,6 +100,7 @@
   <script src="js/renderers/spray.js"></script>
   <script src="js/renderers/ink.js"></script>
   <script src="js/renderers/marker.js"></script>
+  <script src="js/renderers/eraser.js"></script>
   
   <!-- Main -->
   

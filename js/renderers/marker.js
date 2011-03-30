@@ -14,15 +14,18 @@
     this.canvas = canvas;
     this.ctx = canvas.ctx;
     this.work = canvas.workCtx;
+    this.palette = palette;
     
     this.currentStroke = [];
-    this.color = '0,0,0,0.3';
+    this.color = palette.active();
+    this.alpha = '0.4';
     this.maxLength = 20;
     
     this.debug = $('#workboard')[0].getContext('2d');
     
     $(document).bind(ns + '.down', function(event, position) {
       self.currentStroke = [{x: position.x, y: position.y}, {x: position.x + .1, y: position.y + .1}];
+      self.color = self.palette.active();
       self.stroke();
     });
     
@@ -36,10 +39,6 @@
     
     $(document).bind(ns + '.up', function(event, position) {
       self.imprint();
-    });
-    
-    $(document).bind('palette.color', function(event, color) {
-      //self.color = color;
     });
   }
   
@@ -55,7 +54,7 @@
         else {
           ctx.strokeStyle = color;
         }
-        ctx.lineWidth = 10;
+        ctx.lineWidth = width;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
         ctx.beginPath();
@@ -69,12 +68,12 @@
     
     stroke: function() {
       this._drawLine(this.work, this.currentStroke, 12, null);
-      this._drawLine(this.work, this.currentStroke, 10, 'rgba(' + this.color + ')');
+      this._drawLine(this.work, this.currentStroke, 10, 'rgba(' + this.color + ',' + this.alpha + ')');
     },
     
     imprint: function() {
       this._drawLine(this.work, this.currentStroke, 12, null);
-      this._drawLine(this.ctx, this.currentStroke, 10, 'rgba(' + this.color + ')');
+      this._drawLine(this.ctx, this.currentStroke, 10, 'rgba(' + this.color + ',' + this.alpha + ')');
       this.currentStroke = [];
     }
     

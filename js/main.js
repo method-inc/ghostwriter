@@ -6,9 +6,10 @@
       drawing       = new Drawing(canvas);
       mouse         = new Mouse(),
       activebrush   = ko.observable(null),
+      eraser        = new Brush(mouse, 'eraser', 'eraser_holder', activebrush, 'drawing', 'eraserRenderer', drawing),
       pen           = new Brush(mouse, 'pen', 'pen_holder', activebrush, 'drawing', 'inkRenderer', drawing)
       spraygun      = new Brush(mouse, 'spraygun', 'spraygun_holder', activebrush, 'drawing', 'sprayRenderer', drawing),
-      marker    = new Brush(mouse, 'marker', 'marker_holder', activebrush, 'drawing', 'markerRenderer', drawing),
+      marker        = new Brush(mouse, 'marker', 'marker_holder', activebrush, 'drawing', 'markerRenderer', drawing),
       palette       = new Palette(drawing),
       controls      = new Controls(drawing);
   
@@ -16,7 +17,8 @@
   
   var sprayRenderer   = new SprayRenderer(canvas, palette),
       inkRenderer     = new InkRenderer(canvas, palette),
-      markerRenderer  = new MarkerRenderer(canvas, palette);
+      markerRenderer  = new MarkerRenderer(canvas, palette),
+      eraserRenderer  = new EraserRenderer(canvas, palette);
     
   // Init ViewModels
   
@@ -35,6 +37,7 @@
   // Define global ViewModel
   
   window.ViewModel = {
+    eraser: eraser,
     pen: pen,
     spraygun: spraygun,
     marker: marker,
@@ -67,6 +70,12 @@
       return false;
     }
   );
+  
+  $('.color').click(function(event) {
+    ViewModel.palette.active($(this).attr('data-color'));
+    $('.color').removeClass('active');
+    $(this).addClass('active');
+  });
   
   // Modify the DOM
   

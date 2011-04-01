@@ -31,24 +31,24 @@ for more information, contact the author, Hunter Loftis <hunter@skookum.com>
       <canvas id="artboard" width="750" height="500"></canvas>
       <canvas id="workboard" width="750" height="500"></canvas>
       
-      <div id="eraser" data-bind="visible: eraser.visible, css: {down: eraser.down}, style: {left: eraser.left, top: eraser.top, zIndex: eraser.zIndex}">
-        <div class="shadow" data-bind="style: {webkitTransform: eraser.shadowTransform, MozTransform: eraser.shadowTransform, msTransform: eraser.shadowTransform, transform: eraser.shadowTransform}"></div>
-        <div class="brush" data-bind="style: {webkitTransform: eraser.transform, MozTransform: eraser.transform, msTransform: eraser.transform, transform: eraser.transform}"></div>
+      <div id="eraser" data-bind-eraser="visible: visible, css: {down: down}, style: {left: left, top: top, zIndex: zIndex}">
+        <div class="shadow" data-bind-eraser="style: {webkitTransform: shadowTransform, MozTransform: shadowTransform, msTransform: shadowTransform, transform: shadowTransform}"></div>
+        <div class="brush" data-bind-eraser="style: {webkitTransform: transform, MozTransform: transform, msTransform: transform, transform: transform}"></div>
       </div>
       
-      <div id="pen" data-bind="visible: pen.visible, css: {down: pen.down}, style: {left: pen.left, top: pen.top, zIndex: pen.zIndex}">
-        <div class="shadow" data-bind="style: {webkitTransform: pen.shadowTransform, MozTransform: pen.shadowTransform, msTransform: pen.shadowTransform, transform: pen.shadowTransform}"></div>
-        <div class="brush" data-bind="style: {webkitTransform: pen.transform, MozTransform: pen.transform, msTransform: pen.transform, transform: pen.transform}"></div>
+      <div id="pen" data-bind-pen="visible: visible, css: {down: down}, style: {left: left, top: top, zIndex: zIndex}">
+        <div class="shadow" data-bind-pen="style: {webkitTransform: shadowTransform, MozTransform: shadowTransform, msTransform: shadowTransform, transform: shadowTransform}"></div>
+        <div class="brush" data-bind-pen="style: {webkitTransform: transform, MozTransform: transform, msTransform: transform, transform: transform}"></div>
       </div>
       
-      <div id="spraygun" data-bind="visible: spraygun.visible, css: {down: spraygun.down}, style: {left: spraygun.left, top: spraygun.top, zIndex: spraygun.zIndex}">
-        <div class="shadow" data-bind="style: {webkitTransform: spraygun.shadowTransform, MozTransform: spraygun.shadowTransform, msTransform: spraygun.shadowTransform, transform: spraygun.shadowTransform}"></div>
-        <div class="brush" data-bind="style: {webkitTransform: spraygun.transform, MozTransform: spraygun.transform, msTransform: spraygun.transform, transform: spraygun.transform}"></div>
+      <div id="spraygun" data-bind-spray="visible: visible, css: {down: down}, style: {left: left, top: top, zIndex: zIndex}">
+        <div class="shadow" data-bind-spray="style: {webkitTransform: shadowTransform, MozTransform: shadowTransform, msTransform: shadowTransform, transform: shadowTransform}"></div>
+        <div class="brush" data-bind-spray="style: {webkitTransform: transform, MozTransform: transform, msTransform: transform, transform: transform}"></div>
       </div>
       
-      <div id="marker" data-bind="visible: marker.visible, css: {down: marker.down}, style: {left: marker.left, top: marker.top, zIndex: marker.zIndex}">
-        <div class="shadow" data-bind="style: {webkitTransform: marker.shadowTransform, MozTransform: marker.shadowTransform, msTransform: marker.shadowTransform, transform: marker.shadowTransform}"></div>
-        <div class="brush" data-bind="style: {webkitTransform: marker.transform, MozTransform: marker.transform, msTransform: marker.transform, transform: marker.transform}"></div>
+      <div id="marker" data-bind-marker="visible: visible, css: {down: down}, style: {left: left, top: top, zIndex: zIndex}">
+        <div class="shadow" data-bind-marker="style: {webkitTransform: shadowTransform, MozTransform: shadowTransform, msTransform: shadowTransform, transform: shadowTransform}"></div>
+        <div class="brush" data-bind-marker="style: {webkitTransform: transform, MozTransform: transform, msTransform: transform, transform: transform}"></div>
       </div>
     </div>
     
@@ -56,7 +56,7 @@ for more information, contact the author, Hunter Loftis <hunter@skookum.com>
       
       <div id="palette">
         <ul class="colors">
-          <li><a id="newbutton" data-bind="click: ViewModel.controls.clear" href='#'><span>Clear</span></a></li>
+          <li><a id="newbutton" data-bind-controls="click: clear" href='#'><span>Clear</span></a></li>
           <li class='color active' data-color='0,0,0'><div class="swatch"></div></li>
           <li class='color' data-color='169,21,61'><div class="swatch"></div></li>
           <li class='color' data-color='162,61,133'><div class="swatch"></div></li>
@@ -71,10 +71,10 @@ for more information, contact the author, Hunter Loftis <hunter@skookum.com>
     
     <div id="toolbox">
       <ul>
-        <li id="eraser_holder" data-bind="css: {invisible: ViewModel.eraser.active}, click: function() { ViewModel.activebrush(ViewModel.eraser); }"></li>
-        <li id="marker_holder" data-bind="css: {invisible: ViewModel.marker.active}, click: function() { ViewModel.activebrush(ViewModel.marker); }"></li>
-        <li id="spraygun_holder" data-bind="css: {invisible: ViewModel.spraygun.active}, click: function() { ViewModel.activebrush(ViewModel.spraygun); }"></li>
-        <li id="pen_holder" data-bind="css: {invisible: ViewModel.pen.active}, click: function() { ViewModel.activebrush(ViewModel.pen); }"></li>
+        <li id="eraser_holder" data-bind-eraser="css: {invisible: active}, click: activate"></li>
+        <li id="marker_holder" data-bind-marker="css: {invisible: active}, click: activate"></li>
+        <li id="spraygun_holder" data-bind-spray="css: {invisible: active}, click: activate"></li>
+        <li id="pen_holder" data-bind-pen="css: {invisible: active}, click: activate"></li>
       </ul>
     </div>
     
@@ -90,7 +90,7 @@ for more information, contact the author, Hunter Loftis <hunter@skookum.com>
   <!-- JS Libraries -->
   
   <script src="js/lib/jquery-1.5.1.min.js"></script>
-  <script src="js/lib/knockout-1.1.2.debug.js"></script>
+  <script src="js/lib/knockout-latest.debug.js"></script>
   <script src="js/lib/amplify.min.js"></script>
   <script src="js/lib/procrastinate.js"></script>
   

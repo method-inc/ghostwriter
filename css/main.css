@@ -10,7 +10,7 @@ body {
 }
 
 body.brushy {
-  cursor: url(images/chrome_cursor.png), url(images/blank.cur), none !important;
+  cursor: url(images/chrome_cursor.png), none !important;
 }
 
 a {
@@ -45,7 +45,7 @@ ul {
   height: 500px;
   background: #eee url(images/paper3.jpg);
   box-shadow: 1px 1px 5px #000;
-  cursor: url(images/chrome_cursor.png), url(images/blank.cur), none !important;
+  cursor: url(images/chrome_cursor.png), none !important;
 }
 
 #artboard, #workboard {
@@ -57,7 +57,7 @@ ul {
 }
 
 .brushy #artboard {
-  cursor: url(images/blank_google_chrome.cur), url(images/blank.cur), none;
+  cursor: url(images/chrome_cursor.png), none !important;
 }
 
 /* Sidebar controls */
@@ -152,7 +152,7 @@ ul {
 /* Brushes */
 
 .brush {
-  cursor: url(images/chrome_cursor.png), url(images/blank.cur), none !important;
+  cursor: url(images/chrome_cursor.png), none !important;
 }
 
 /* Pen */

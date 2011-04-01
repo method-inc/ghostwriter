@@ -17,18 +17,14 @@
     },
     
     save: function() {
-      console.log("Saving...");
       amplify.store('ghostwriter.drawing', this.canvas.el.toDataURL('image/png'));
     },
     
     load: function() {
       var self = this;
-      console.log("Loading...")
       if ('ghostwriter.drawing' in amplify.store()) {
-        console.log("Key found...")
         var img = new Image();
         img.onload = function() {
-          console.log("image loaded...")
           self.canvas.ctx.drawImage(img, 0, 0);
         };
         img.src = amplify.store('ghostwriter.drawing');

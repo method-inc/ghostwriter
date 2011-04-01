@@ -11,7 +11,7 @@
       spraygun      = new Brush(mouse, 'spraygun', 'spraygun_holder', activebrush, 'drawing', 'sprayRenderer', drawing),
       marker        = new Brush(mouse, 'marker', 'marker_holder', activebrush, 'drawing', 'markerRenderer', drawing),
       palette       = new Palette(drawing),
-      controls      = new Controls(drawing);
+      controls      = new Controls(drawing, palette);
   
   // Create Renderers
   
@@ -34,45 +34,18 @@
     }
   });
   
-  // Define global ViewModel
-  
-  window.ViewModel = {
-    eraser: eraser,
-    pen: pen,
-    spraygun: spraygun,
-    marker: marker,
-    mouse: mouse,
-    activebrush: activebrush,
-    palette: palette,
-    canvas: canvas,
-    controls: controls,
-    drawing: drawing
-  };
-  
   // Bind Views to ViewModel
   
-  ko.applyBindings(ViewModel);
+  ko.applyBindings(pen, 'pen');
+  ko.applyBindings(spraygun, 'spray');
+  ko.applyBindings(marker, 'marker');
+  ko.applyBindings(eraser, 'eraser');
+  ko.applyBindings(controls, 'controls');
   
   // Non-standard bindings
   
-  $('#wrap').bind('click', function(event) {
-    //console.dir(event);
-  });
-  
-  $('#sidebar').mouseenter(
-    function(event) {
-      ViewModel.activebrush().tracking(false);
-      return false;
-    });
-  $('#sidebar').mouseleave(
-    function(event) {
-      ViewModel.activebrush().tracking(true);
-      return false;
-    }
-  );
-  
   $('.color').click(function(event) {
-    ViewModel.palette.active($(this).attr('data-color'));
+    palette.active($(this).attr('data-color'));
     $('.color').removeClass('active');
     $(this).addClass('active');
   });

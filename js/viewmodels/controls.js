@@ -1,32 +1,14 @@
 (function($, ko) {
 
-  function Controls(drawing) {
+  function Controls(drawing, palette) {
     this.drawing = drawing;
+    this.palette = palette;
   }
-  
-  /* Basically fix KO like instead of this:
-  
-  something = ViewModel.controls.playback();
-  this.something();
-  
-  use this:
-  
-  something = {
-    fn: ViewModel.controls.playback,
-    context: ViewModel.controls
-  }
-  something.fn.call(something.fn.context);
-  */
   
   Controls.prototype = {
   
-    playback: function() {
-      this.controls.drawing.play();     // Knockout really scopes this in a retarded way
-      //this.drawing.play();
-    },
-    
     clear: function() {
-      this.controls.drawing.clear();
+      this.drawing.clear();
       this.palette.active(this.palette.active());   // There may be a more elegant way to store starting color information
     }
   }
